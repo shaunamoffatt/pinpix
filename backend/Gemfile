@@ -5,7 +5,9 @@ ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
-#mongoid 
+#faker for seeding my db
+gem 'faker', git: 'https://github.com/stympy/faker'
+#mongoid mapper
 gem 'mongoid'
 
 # Use Puma as the app server
