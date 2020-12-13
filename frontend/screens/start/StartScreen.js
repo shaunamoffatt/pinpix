@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import logo from "../../assets/logo.png";
 
- import { styles } from '../styles'
+import { styles } from "../styles";
 
 class StartScreen extends React.Component {
   render() {
@@ -20,9 +20,8 @@ class StartScreen extends React.Component {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.colorWhite}>Go to Sign In!</Text>
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.buttonWhitePinkBorder}>
-          <Text style={styles.colorPink}>No Account yet?! Sign up!</Text>
+          <Text style={styles.colorPink}>Noooo Account yet?! Sign up!</Text>
         </TouchableOpacity>
         <StatusBar style="auto" />
       </View>
@@ -31,5 +30,3 @@ class StartScreen extends React.Component {
 }
 
 export default StartScreen;
-
-
