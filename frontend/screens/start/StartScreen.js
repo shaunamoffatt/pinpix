@@ -12,21 +12,25 @@ import logo from "../../assets/logo.png";
 
 import { styles } from "../styles";
 
-class StartScreen extends React.Component {
-  render() {
+
+
+const StartScreen = props => {
     return (
       <View style={styles.container}>
         <Image source={logo} style={styles.image} />
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.colorWhite}>Go to Sign In!</Text>
+        <TouchableOpacity style={styles.buttonPink} onPress={() => {
+          props.navigation.navigate({routeName: 'Login'});
+        }}>
+          <Text style={styles.colorWhite}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonWhitePinkBorder}>
-          <Text style={styles.colorPink}>Noooo Account yet?! Sign up!</Text>
+        <TouchableOpacity style={styles.buttonWhite}onPress={() => {
+          props.navigation.navigate({routeName: 'Register'});
+        }}>
+          <Text style={styles.colorPink}>No Account yet?! Sign up!</Text>
         </TouchableOpacity>
         <StatusBar style="auto" />
       </View>
     );
-  }
 }
 
 export default StartScreen;

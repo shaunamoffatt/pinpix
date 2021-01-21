@@ -4,7 +4,7 @@ development:
     # Defines the default client. (required)
     default:
       # Mongoid can connect to a URI accepted by the driver:
-      uri: mongodb+srv://Shauna:2QZ5YuI1MaofXyu1@cluster0.4k89w.mongodb.net/pinpixdb?retryWrites=true&w=majority
+      uri: mongodb+srv://Shauna:2QZ5YuI1MaofXyu1@cluster0.4k89w.mongodb.net/pinpixdb?retryWrites=true&w=majority&ssl=true&authSource=admin
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
       # (required).

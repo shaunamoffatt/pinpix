@@ -17,17 +17,10 @@ import logo from "./assets/logo.png";
 import "react-native-gesture-handler";
 
 
-//import StartScreen from "./screens/start/StartScreen";
-//import SplashScreen from "./screens/start/SplashScreen";
 import StartNavigator from './navigation/StartNavigator';
 
 export default function App() {
   return (
     <StartNavigator/>
-    //<NavigationContainer>
-     // <Stack.Navigator>
-     //   <Stack.Screen name="StartScreen" component={StartScreen} />
-     // </Stack.Navigator>
-   // </NavigationContainer>
   );
 };

@@ -8,13 +8,15 @@ import {
 import StartScreen from "../screens/start/StartScreen";
 import SplashScreen from "../screens/start/SplashScreen";
 import LoginScreen from "../screens/start/LoginScreen";
-import SignUpScreen from "../screens/start/SignUpScreen";
+import RegisterScreen from "../screens/start/RegisterScreen";
+import HomeScreen from "../screens/home/HomeScreen";
 
 const StartNavigator = createStackNavigator({
     //Splash:  SplashScreen,
     Start : StartScreen,
     Login : LoginScreen,
-    SignUp : SignUpScreen
+    Register : RegisterScreen,
+    Home : HomeScreen
 });
 
 export default createAppContainer(StartNavigator);

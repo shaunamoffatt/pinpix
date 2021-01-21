@@ -21,6 +21,16 @@ module Backend
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
       config.mongoid.logger = Logger.new(STDERR, :warn)
+      config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
+      config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
+  #autoloads lib folder during production
+  config.eager_load_paths << Rails.root.join('lib')
+
+  #autoloads lib folder during development
+  config.autoload_paths << Rails.root.join('lib')
+    # Sessions and Cookies Middleware
+    #config.middleware.use ActionDispatch::Cookies
+    #config.middleware.use ActionDispatch::Session::CookieStore
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
