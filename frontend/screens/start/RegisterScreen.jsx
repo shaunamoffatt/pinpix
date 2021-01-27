@@ -6,6 +6,7 @@ import {
   Text,
   View,
   ScrollView,
+  KeyBoardAvoidingView,
   TextInput,
   TouchableOpacity,
   AsyncStorage,
@@ -17,19 +18,6 @@ import { styles } from "../styles";
 import Constants from 'expo-constants';
 const { manifest } = Constants;
 
-const SERVER_URL = (() => {
-  // TODO - put a "prod" api server somewhere
-
-  // Android / IOS - no CORS issue.
-  if (!!manifest.debuggerHost) {
-    return "http://" + manifest.debuggerHost.split(`:`).shift().concat(`:3000/`);
-  } 
-  // Expo Web client, making use of webpack.config.js for devServer proxy.
-  else {
-    return "./";
-  }
-})();
-
 const setItem = async (name, data) => {
   try {
     await AsyncStorage.setItem(name, JSON.stringify(data));
@@ -40,7 +28,7 @@ const setItem = async (name, data) => {
   }
 };
 
-let apiUrl = "http://localhost:3000/users";
+let apiUrl = "http://localhost:3000/users ";
 let usersPath = "users";
 
 class RegisterScreen extends React.Component {

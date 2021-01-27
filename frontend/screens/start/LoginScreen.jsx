@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useReducer } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   Image,
@@ -8,33 +8,31 @@ import {
   ScrollView,
   TextInput,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
 } from "react-native";
 //fancy inputs
-import { withNavigation } from "react-navigation";
 import { Hoshi } from "react-native-textinput-effects";
 import { styles } from "../styles";
 
+//TODO find better place for api URLS
 let apiUrl = "http://localhost:3000/";
 let authenticatePath = "authenticate";
-
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const STORAGE_TOKEN = "auth_token";
 class LoginScreen extends React.Component {
-  state = {
-    email: "",
-    password: "",
-      userdata: {}
-  };
-
-  async storeToken(user) {
+  async storeToken(auth_token) {
     try {
-       await AsyncStorage.setItem("userData", JSON.stringify(user));
+      await AsyncStorage.setItem(STORAGE_TOKEN, JSON.stringify(auth_token));
+      alert("Token successfully saved");
     } catch (error) {
-      console.log("Something went wrong", error);
+      console.log("Failed to save auth_token", error);
     }
   }
+
   async getToken(user) {
     try {
-      let userData = await AsyncStorage.getItem("userData");
+      let userData = await AsyncStorage.getItem(STORAGE_TOKEN);
       let data = JSON.parse(userData);
       console.log(data);
     } catch (error) {
@@ -55,13 +53,13 @@ class LoginScreen extends React.Component {
         password: this.state.password,
       }),
     })
-      .then(response => response.json())
-      .then(response => {
+      .then((response) => response.json())
+      .then((response) => {
         this.storeToken(JSON.stringify(response.auth_token));
         alert("auth_token : " + response.auth_token);
         this.props.navigation.navigate("Home");
       })
-      .catch(error => {
+      .catch((error) => {
         alert("fails");
         console.error(error);
       });
@@ -80,7 +78,12 @@ class LoginScreen extends React.Component {
             // this is used to set backgroundColor of label mask.
             // please pass the backgroundColor of your TextInput container.
             backgroundColor={"#FFF"}
-            onChangeText={value => this.setState({ email: value })}
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+            returnKeyType="next"
           />
           <Hoshi
             label={"Password"}
@@ -90,8 +93,12 @@ class LoginScreen extends React.Component {
             // this is used to set backgroundColor of label mask.
             // please pass the backgroundColor of your TextInput container.
             backgroundColor={"#FFF"}
-            onChangeText={value => this.setState({ password: value })}
+            value={password}
+            onChangeText={setPassword}
             secureTextEntry
+            autoCapitalize="none"
+            autoCorrect={false}
+            returnKeyType="next"
           />
           <TouchableOpacity
             style={styles.buttonPink}
@@ -105,5 +112,4 @@ class LoginScreen extends React.Component {
     );
   }
 }
-
-export default withNavigation(LoginScreen);
+export default LoginScreen;

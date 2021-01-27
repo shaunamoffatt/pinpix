@@ -7,7 +7,7 @@ class HomeScreen extends  React.Component {
   async componentDidMount() {
     // Preload data from an external API
     // Preload data using AsyncStorage
-    const data = await this.performTimeConsumingTask();
+    // const data = await this.performTimeConsumingTask();
   }
 
   render() {
