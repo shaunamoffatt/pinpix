@@ -1,8 +1,10 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import StartScreen from "../screens/start/StartScreen";
-import SplashScreen from "../screens/start/SplashScreen";
+//import SplashScreen from "../screens/start/SplashScreen";
 import LoginScreen from "../screens/start/LoginScreen";
 import RegisterScreen from "../screens/start/RegisterScreen";
 
@@ -11,47 +13,55 @@ import HomeScreen from "../screens/main/HomeScreen";
 import CreatePinScreen from "../screens/main/CreatePinScreen";
 import CapturePhotoScreen from "../screens/pin/CapturePhotoScreen";
 import EditPhotoScreen from "../screens/pin/EditPhotoScreen";
+
 import Colors from "../constants/Colors";
+
+// Define multiple groups of screens in objects like this
+const commonScreens = {
+
+};
+
+const authScreens = {
+  Start: StartScreen,
+  Login: LoginScreen,
+  Register: RegisterScreen,
+};
+
+const mainScreens = {
+  Home: HomeScreen,
+  CreatePin: CreatePinScreen,
+};
 
 const Stack = createStackNavigator();
 
-const AuthNavigator = () => {
+const MainNavigator = ({}) => {
+  
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="StartScreen"
-        component={StartScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="RegisterScreen"
-        component={LoginScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
+      {Object.entries({
+        ... authScreens
+        // Use the screens normally
+        //...mainScreens,
+        // Use some screens conditionally based on some condition
+       // ...(isLoggedIn ? userScreens : authScreens),
+      }).map(([name, component]) => (
+        <Stack.Screen name={name} component={component} />
+      ))}
     </Stack.Navigator>
   );
 };
 
-const MainStackNavigator = () => {
+const BottomTabs = createBottomTabNavigator();
+
+const MainStackNavigator = ({}) => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-    </Stack.Navigator>
+    <BottomTabs.Navigator>
+      <BottomTabs.Screen name="HomeScreen" component={HomeScreen} />
+    </BottomTabs.Navigator>
   );
 };
 
-const CreatePinNavigator = () => {
+const CreatePinNavigator = ({}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Capture" component={CapturePhotoScreen} />
@@ -60,4 +70,4 @@ const CreatePinNavigator = () => {
   );
 };
 
-export { AuthNavigator, MainStackNavigator, CreatePinNavigator };
+export default MainNavigator;

@@ -1,15 +1,36 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { View, ActivityIndicator } from "react-native";
+
 import { NavigationContainer } from "@react-navigation/native";
-import StartNavigator from "./navigation/StartNavigator";
-import AuthNavigator from "./navigation/RootNavigator";
+import MainNavigator from "./navigation/RootNavigator";
+import { Provider as AuthProvider } from "./utils/AuthContext";
+import Colors from "./constants/Colors";
 
-const AuthContext = createContext({});
+const App = () => {
+  const [isLoading, setIsLoading] = useState("");
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
 
-export default function App() {
+
+
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color={Colors.pink} />
+      </View>
+    );
+  }
   return (
-    <NavigationContainer>
-      <AuthNavigator />
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <MainNavigator />
+      </NavigationContainer>
+    </AuthProvider>
   );
-}
+};
+
+export default App;

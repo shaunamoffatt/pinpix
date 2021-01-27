@@ -7,7 +7,6 @@ import {
   View,
   ScrollView,
   KeyBoardAvoidingView,
-  TextInput,
   TouchableOpacity,
   AsyncStorage,
 } from "react-native";
@@ -15,7 +14,7 @@ import {
 import { Hoshi } from "react-native-textinput-effects";
 
 import { styles } from "../styles";
-import Constants from 'expo-constants';
+import Constants from "expo-constants";
 const { manifest } = Constants;
 
 const setItem = async (name, data) => {
@@ -40,9 +39,7 @@ class RegisterScreen extends React.Component {
     password_error: "",
   };
 
-  register()
-   {
-     
+  register() {
     // If password not entered
     if (this.state.password == "") alert("Please enter Password");
     else if (this.state.password_confirmation == "")
@@ -50,6 +47,7 @@ class RegisterScreen extends React.Component {
       alert("Please enter confirm password");
 
     if (this.state.password_confirmation == this.state.password) {
+      alert("Passwords match")
       fetch(apiUrl, {
         method: "POST",
         headers: {
@@ -61,12 +59,13 @@ class RegisterScreen extends React.Component {
           password: this.state.password,
         }),
       })
-        .then(response => response.json())
-        .then(response => {
+    
+        .then((response) => response.json())
+        .then((response) => {
           alert(response.auth_token);
           this.props.navigation.navigate("Home");
         })
-        .catch(error => {
+        .catch((error) => {
           alert("fails");
           console.error(error);
         });
@@ -83,35 +82,24 @@ class RegisterScreen extends React.Component {
           <Text style={styles.largeText}>Create a new Account!</Text>
           <Hoshi
             label={"Email"}
-            // this is used as active border color
             borderColor={"#d81159"}
-            // this is used to set backgroundColor of label mask.
-            // please pass the backgroundColor of your TextInput container.
             backgroundColor={"#FFF"}
-            // onChangeText={this.passwordChanged.bind(this)}
-            onChangeText={value => this.setState({ email: value })}
+            onChangeText={(value) => this.setState({ email: value })}
           />
           <Hoshi
             label={"Password"}
-            // this is used as active border color
             borderColor={"#d81159"}
-            // this is used to set backgroundColor of label mask.
-            // please pass the backgroundColor of your TextInput container.
             backgroundColor={"#FFF"}
-            // onChangeText={this.passwordChanged.bind(this)}
-            onChangeText={value => this.setState({ password: value })}
+            onChangeText={(value) => this.setState({ password: value })}
             secureTextEntry
           />
           <Hoshi
             label={"Confirm Password"}
-            // this is used as active border color
             borderColor={"#d81159"}
-            // this is used to set backgroundColor of label mask.
-            // please pass the backgroundColor of your TextInput container.
             backgroundColor={"#FFF"}
-            // onChangeText={this.passwordChanged.bind(this)}
-            onChangeText={value =>
-              this.setState({ password_confirmation: value })}
+            onChangeText={(value) =>
+              this.setState({ password_confirmation: value })
+            }
             secureTextEntry
           />
           <TouchableOpacity

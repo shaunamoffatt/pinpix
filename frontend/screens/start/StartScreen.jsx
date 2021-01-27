@@ -19,7 +19,7 @@ const StartScreen = (props) => {
       <TouchableOpacity
         style={styles.buttonPink}
         onPress={() => {
-          props.navigation.navigate({ routeName: "Login" });
+          props.navigation.navigate("Login");
         }}
       >
         <Text style={styles.colorWhite}>Login</Text>
@@ -27,7 +27,7 @@ const StartScreen = (props) => {
       <TouchableOpacity
         style={styles.buttonWhite}
         onPress={() => {
-          props.navigation.navigate({ routeName: "Register" });
+          props.navigation.navigate("Register");
         }}
       >
         <Text style={styles.colorPink}>No Account yet?! Sign up!</Text>
