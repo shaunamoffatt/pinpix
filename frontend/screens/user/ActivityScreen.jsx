@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { styles } from "../styles";
-const EditPhotoScreen = ({ navigation, route }) => {
+const ActivityScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.largeText}>EditPhotoScreen</Text>
+      <Text style={styles.largeText}>ActivityScreen</Text>
     </View>
   );
 };
 
-export default EditPhotoScreen;
+export default ActivityScreen;

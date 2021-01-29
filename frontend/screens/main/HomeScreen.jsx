@@ -1,35 +1,17 @@
 // Import React and Component
 import React, { useState, useEffect, fragment } from "react";
 import { ActivityIndicator, View, StyleSheet, Image, Text } from "react-native";
+import { styles } from "../styles";
 
-class HomeScreen extends  React.Component {
-
-  async componentDidMount() {
-    // Preload data from an external API
-    // Preload data using AsyncStorage
-    // const data = await this.performTimeConsumingTask();
-  }
-
+class HomeScreen extends React.Component {
   render() {
     return (
-      <View style={styles.viewStyles}>
-        <Text style={styles.textStyles}>HOME SCREEN</Text>
+      <View style={styles.container}>
+        <Text style={styles.largeText}>HOME SCREEN</Text>
       </View>
     );
   }
 }
-export default HomeScreen
+export default HomeScreen;
 
-const styles = {
-  viewStyles: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "orange"
-  },
-  textStyles: {
-    color: "white",
-    fontSize: 40,
-    fontWeight: "bold"
-  }
-};
+

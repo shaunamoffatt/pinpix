@@ -1,9 +1,11 @@
 import createDataContext from "./createDataContext";
 import { AuthReducer, initialState } from "../store/reducers/auth_reducers";
+import { AsyncStorage } from "react-native";
 
 //TODO find better place for api URLS
 let apiUrl = "http://localhost:3000/";
 let authenticatePath = "authenticate";
+let usersPath = "users";
 //TODO find a better place for this too
 const STORAGE_TOKEN = "auth_token";
 
@@ -26,9 +28,51 @@ const getToken = async () => {
   }
 };
 
+const setItem = async (name, data) => {
+  try {
+    await AsyncStorage.setItem(name, JSON.stringify(data));
+    console.log("data stored");
+  } catch (error) {
+    // Error saving data
+    console.log("AsyncStorage save error: " + error.message);
+  }
+};
+
 const register = (dispatch) => {
-  return ({ email, password }) => {
+  return ({ email, password, password_confirmation }) => {
     console.log("register");
+    // If password not entered
+    if (password == "") alert("Please enter Password");
+    else if (password_confirmation == "")
+      // If confirm password not entered
+      alert("Please enter confirm password");
+
+    if (password_confirmation == password) {
+      alert("Passwords match");
+      fetch(`${apiUrl}/${usersPath}`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          alert(response.auth_token);
+          //this.props.navigation.navigate("Home");
+        })
+        .catch((error) => {
+          alert("fails");
+          console.error(error);
+        });
+    } else {
+      password_error: "Passwords not the same";
+      console.log(password_error);
+    }
   };
 };
 

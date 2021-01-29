@@ -16,7 +16,6 @@ import { styles } from "../styles";
 
 import { Context as AuthContext } from "../../utils/AuthContext";
 
-
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,11 +27,8 @@ const LoginScreen = (props) => {
         <Text style={styles.largeText}>Welcome back!</Text>
         <Hoshi
           label={"Email"}
-          // this is used as active border color
           borderColor={"#d81159"}
           width={"75%"}
-          // this is used to set backgroundColor of label mask.
-          // please pass the backgroundColor of your TextInput container.
           backgroundColor={"#FFF"}
           value={email}
           onChangeText={setEmail}
@@ -43,11 +39,8 @@ const LoginScreen = (props) => {
         />
         <Hoshi
           label={"Password"}
-          // this is used as active border color
           borderColor={"#d81159"}
           width={"75%"}
-          // this is used to set backgroundColor of label mask.<TouchableOpacity style={styles.buttonPink} onPress={() => login1()}>
-          // please pass the backgroundColor of your TextInput container.
           backgroundColor={"#FFF"}
           value={password}
           onChangeText={setPassword}

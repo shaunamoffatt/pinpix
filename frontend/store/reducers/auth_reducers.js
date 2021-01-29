@@ -3,7 +3,7 @@ import * as ACTION_TYPES from "../actions/action_types";
 export const initialState = {
   isLoading: true,
   userToken: null,
-  userId: null
+  userId: null,
 };
 
 export const AuthReducer = (state = initialState, action) => {

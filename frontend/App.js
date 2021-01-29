@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
-import MainNavigator from "./navigation/RootNavigator";
+import MainStackNavigator from "./navigation/RootNavigator";
 import { Provider as AuthProvider } from "./utils/AuthContext";
 import Colors from "./constants/Colors";
 
@@ -15,8 +15,6 @@ const App = () => {
     }, 1000);
   }, []);
 
-
-
   if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -27,7 +25,7 @@ const App = () => {
   return (
     <AuthProvider>
       <NavigationContainer>
-        <MainNavigator />
+        <MainStackNavigator />
       </NavigationContainer>
     </AuthProvider>
   );
