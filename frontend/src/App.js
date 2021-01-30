@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from "./navigation/RootNavigator";
 import { Provider as AuthProvider } from "./utils/AuthContext";
 import { Provider as PaperProvider } from "react-native-paper";
+import { registerRootComponent } from 'expo'; // import it explicitly
 
 const App = () => {
   const [isLoading, setIsLoading] = useState("");
@@ -33,5 +34,5 @@ const App = () => {
   );
 };
 
-export default App;
+export default registerRootComponent(App); // this is how I register the App component
 

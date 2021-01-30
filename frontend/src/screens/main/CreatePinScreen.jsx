@@ -5,9 +5,9 @@ import { useFadeIn } from "../../hooks/fadeIn";
 const CreatePinScreen = ({ navigation, route }) => {
   return (
     <Animated.View>
-    <View style={styles.container}>
-      <Text style={styles.largeText}>Create Pin Screen</Text>
-    </View>
+      <View style={styles.container}>
+        <Text style={styles.largeText}>Create Pin Screen</Text>
+      </View>
     </Animated.View>
   );
 };
