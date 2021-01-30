@@ -1,11 +1,14 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Animated } from "react-native";
 import { styles } from "../styles";
+import { useFadeIn } from "../../hooks/fadeIn";
 const CreatePinScreen = ({ navigation, route }) => {
   return (
-      <View style={styles.container}>
-        <Text style={styles.largeText}>Create Pin Screen</Text>
+    <Animated.View>
+    <View style={styles.container}>
+      <Text style={styles.largeText}>Create Pin Screen</Text>
     </View>
+    </Animated.View>
   );
 };
 

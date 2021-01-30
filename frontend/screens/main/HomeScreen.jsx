@@ -1,4 +1,3 @@
-// Import React and Component
 import React, { useState, useEffect, fragment } from "react";
 import { ActivityIndicator, View, StyleSheet, Image, Text } from "react-native";
 import { styles } from "../styles";

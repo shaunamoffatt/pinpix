@@ -7,21 +7,23 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    backgroundColor: "white"
+    backgroundColor: "white",
+    zIndex: 0,
+    elevation: 0,
   },
   formView: {
     marginTop: 100,
-    padding: 20
+    padding: 20,
   },
   form: {
-    flex: 2
+    flex: 2,
   },
   image: {
     flex: 0.75,
     marginTop: 100,
     width: null,
     height: null,
-    resizeMode: "contain"
+    resizeMode: "contain",
   },
   buttonPink: {
     width: "100%",
@@ -31,25 +33,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
-    marginBottom: 10
+    marginBottom: 10,
   },
   colorWhite: {
-    color: "white"
+    color: "white",
   },
   buttonWhite: {
     backgroundColor: "white",
     borderColor: pink,
     width: "100%",
-    borderRadius:10,
+    borderRadius: 10,
     borderWidth: 1,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 40,
-    marginBottom: 10
+    marginBottom: 10,
   },
   colorPink: {
-    color: pink
+    color: pink,
   },
   input: {
     margin: 20,
@@ -63,9 +65,8 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: navy,
     marginTop: 30,
-    marginBottom:10
-    
-  }
+    marginBottom: 10,
+  },
 });
 
 export { styles };

@@ -3,8 +3,8 @@ import { View, Text } from "react-native";
 
 const SearchScreen = ({ navigation, route }) => {
   return (
-    <View>
-      <Text>{} SearchScreen</Text>
+    <View style={styles.container}>
+      <Text style={styles.largeText}>Search Screen</Text>
     </View>
   );
 };

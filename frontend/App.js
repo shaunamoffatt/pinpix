@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, StyleSheet } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import MainStackNavigator from "./navigation/RootNavigator";
 import { Provider as AuthProvider } from "./utils/AuthContext";
-import Colors from "./constants/Colors";
+import { Provider as PaperProvider } from "react-native-paper";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState("");
@@ -23,12 +23,15 @@ const App = () => {
     );
   }
   return (
-    <AuthProvider>
-      <NavigationContainer>
-        <MainStackNavigator />
-      </NavigationContainer>
-    </AuthProvider>
+    <PaperProvider>
+      <AuthProvider>
+        <NavigationContainer>
+          <MainStackNavigator />
+        </NavigationContainer>
+      </AuthProvider>
+    </PaperProvider>
   );
 };
 
 export default App;
+
