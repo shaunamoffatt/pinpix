@@ -28,7 +28,7 @@ const MainNavigator = ({}) => {
         />
       ) : (
         // When logged in, the user will be shown this route
-        <RootStack.Screen name="pinpix" component={BottomTabNavigator} />
+        <RootStack.Screen name="pinpix" component={BottomTabNavigator}  options={{ headerShown: false }}/>
       )}
     </RootStack.Navigator>
   );

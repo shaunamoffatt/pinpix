@@ -4,7 +4,7 @@ import { View, StyleSheet } from "react-native";
 import HomeScreen from "../screens/main/HomeScreen";
 import SearchScreen from "../screens/main/SearchScreen";
 import ProfileScreen from "../screens/main/ProfileScreen";
-import ActivityScreen from "../screens/user/ActivityScreen";
+import ActivityScreen from "../screens/main/ActivityScreen";
 import CreatePinScreen from "../screens/main/CreatePinScreen";
 
 import Colors from "../constants/Colors";
@@ -46,7 +46,7 @@ const BottomTabNavigator = ({}) => {
       />
       <Tab.Screen
         name="Search"
-        component={HomeScreen}
+        component={SearchScreen}
         options={{
           tabBarLabel: "Search",
           tabBarIcon: ({ color, size, focused }) => (
@@ -64,7 +64,6 @@ const BottomTabNavigator = ({}) => {
         component={CreatePinScreen}
         options={{
           tabBarLabel: "Add Pin",
-          //https://github.com/entria/react-native-view-overflow#manual-installation
           tabBarIcon: ({ color, size, focused }) => (
             <View style={tabStyles.centerIconView}>
               <AntDesign
@@ -80,7 +79,7 @@ const BottomTabNavigator = ({}) => {
       />
       <Tab.Screen
         name="Heart"
-        component={HomeScreen}
+        component={ActivityScreen}
         options={{
           tabBarLabel: "Favs",
           tabBarIcon: ({ color, size, focused }) => (

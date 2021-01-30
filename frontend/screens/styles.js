@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
   form: {
     flex: 2,
   },
+  center:{
+    alignItems: "center",
+    justifyContent: "center"
+  },
   image: {
     flex: 0.75,
     marginTop: 100,
