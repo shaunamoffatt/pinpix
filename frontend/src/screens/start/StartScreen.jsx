@@ -15,24 +15,26 @@ import { styles } from "../styles";
 const StartScreen = (props) => {
   return (
     <View style={styles.container}>
-      <Image source={logo} style={styles.image} />
-      <TouchableOpacity
-        style={styles.buttonPink}
-        onPress={() => {
-          props.navigation.navigate("Login");
-        }}
-      >
-        <Text style={styles.colorWhite}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.buttonWhite}
-        onPress={() => {
-          props.navigation.navigate("Register");
-        }}
-      >
-        <Text style={styles.colorPink}>No Account yet?! Sign up!</Text>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
+      <View style={({ marginTop: 3000 },styles.contentContainer )}>
+        <Image source={logo} style={styles.image} />
+        <TouchableOpacity
+          style={styles.buttonPink}
+          onPress={() => {
+            props.navigation.navigate("Login");
+          }}
+        >
+          <Text style={styles.colorWhite}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.buttonWhite}
+          onPress={() => {
+            props.navigation.navigate("Register");
+          }}
+        >
+          <Text style={styles.colorPink}>No Account yet?! Sign up!</Text>
+        </TouchableOpacity>
+        <StatusBar style="auto" />
+      </View>
     </View>
   );
 };

@@ -1,8 +1,10 @@
 import * as ACTION_TYPES from "../actions/action_types";
-
+import AsyncStorageItems from "../../constants/AsyncStorageItems"
+// Code adapted from "Building react hooks front end app" tutorial 
+//https://www.freecodecamp.org/news/build-a-react-hooks-front-end-app-with-routing-and-authentication/
 export const initialState = {
   isLoading: true,
-  userToken: null,
+  auth_token: null,
   userId: null,
 };
 
@@ -11,27 +13,27 @@ export const AuthReducer = (state = initialState, action) => {
     case ACTION_TYPES.LOGIN_SUCCESS:
       return {
         ...state,
-        userToken: action.token,
+        auth_token: action.auth_token,
         userId: action.id,
         isLoading: false,
       };
     case ACTION_TYPES.LOGIN_FAILURE:
       return {
         ...state,
-        userToken: null,
+        auth_token: null,
         isLoading: false,
       };
     case ACTION_TYPES.RETRIEVE_TOKEN:
       return {
         ...state,
-        userToken: action.token,
+        auth_token: action.auth_token,
         userId: action.id,
         isLoading: false,
       };
     case ACTION_TYPES.LOGOUT:
       return {
         ...state,
-        userToken: null,
+        auth_token: null,
         userId: null,
         isLoading: false,
       };

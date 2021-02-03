@@ -22,8 +22,8 @@ const RegisterScreen = (props) => {
   const { state, register } = useContext(AuthContext);
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <View style={styles.contentContainer}>
         <Text style={styles.largeText}>Create a new Account!</Text>
         <Hoshi
           label={"Email"}

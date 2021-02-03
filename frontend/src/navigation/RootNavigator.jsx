@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import StartScreen from "../screens/start/StartScreen";
@@ -12,14 +12,18 @@ import EditPhotoScreen from "../screens/pin/EditPhotoScreen";
 
 import { AsyncStorage } from "react-native";
 
-import  BottomTabNavigator  from "./BottomTabNavigator";
+import BottomTabNavigator from "./BottomTabNavigator";
+
+import AsyncStorageItems from "../constants/AsyncStorageItems";
+import { Context as AuthContext } from "../utils/AuthContext";
 
 const RootStack = createStackNavigator();
 //https://reactnavigation.org/docs/auth-flow/
 const MainNavigator = ({}) => {
+  const { state } = useContext(AuthContext);
   return (
     <RootStack.Navigator>
-      {AsyncStorage.getItem("auth_token") === null ? (
+      {state.auth_token === null ? (
         // If not logged in, the user will be shown this route
         <RootStack.Screen
           name="Auth"
@@ -28,7 +32,12 @@ const MainNavigator = ({}) => {
         />
       ) : (
         // When logged in, the user will be shown this route
-        <RootStack.Screen name="pinpix" component={BottomTabNavigator}  options={{ headerShown: false }}/>
+
+        <RootStack.Screen
+          name="pinpix"
+          component={BottomTabNavigator}
+          options={{ headerShown: false }}
+        />
       )}
     </RootStack.Navigator>
   );

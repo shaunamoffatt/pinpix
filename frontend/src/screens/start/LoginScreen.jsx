@@ -22,8 +22,8 @@ const LoginScreen = (props) => {
   const { state, login } = useContext(AuthContext);
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <ScrollView style={styles.contentContainer}>
+      <View>
         <Text style={styles.largeText}>Welcome back!</Text>
         <Hoshi
           label={"Email"}

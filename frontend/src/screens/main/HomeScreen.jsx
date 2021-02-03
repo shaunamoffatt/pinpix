@@ -5,20 +5,20 @@ import Colors from "../../constants/Colors";
 import { ActivityIndicator } from 'react-native-paper';
 import MapView from "react-native-maps";
 //https://docs.expo.io/versions/latest/sdk/map-view/
+//53.268648037445374, -9.047254430981548
 const HomeScreen = ({}) => {
   const state = {
     mapLoaded: true,
     region: {
-      longitude: -122,
-      latitude: 37,
-      longitudeDelta: 0.04,
+      longitude: -9.047254430981548,
+      latitude: 53.268648037445374,
+      longitudeDelta: 0.002,
       latitudeDelta: 0.09,
     },
   };
 
   useEffect(() => {
     // check if map is loaded
-   
   });
 
   if (!state.mapLoaded) {

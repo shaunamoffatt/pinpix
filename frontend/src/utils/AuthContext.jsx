@@ -7,20 +7,29 @@ let apiUrl = "http://localhost:3000/";
 let authenticatePath = "authenticate";
 let usersPath = "users";
 //TODO find a better place for this too
-const AUTH_TOKEN = "auth_token";
+import AsyncStorageItems from "../constants/AsyncStorageItems"
 
 const storeToken = async () => {
   try {
-    await AsyncStorage.setItem(AUTH_TOKEN, JSON.stringify(auth_token));
+    await AsyncStorage.setItem(AsyncStorageItems.AUTH_TOKEN, JSON.stringify(auth_token));
     alert("Token successfully saved");
   } catch (error) {
     console.log("Failed to save auth_token", error);
   }
 };
 
+const removeToken = async () => {
+   try {
+    await AsyncStorage.setItem(AsyncStorageItems.AUTH_TOKEN, null);
+    alert("Token successfully removed");
+  } catch (error) {
+    console.log("Failed to remove auth_token", error);
+  }
+}
+
 const getToken = async () => {
   try {
-    let userData = await AsyncStorage.getItem(AUTH_TOKEN);
+    let userData = await AsyncStorage.getItem(AsyncStorageItems.AUTH_TOKEN);
     let data = JSON.parse(userData);
     console.log(data);
   } catch (error) {
@@ -116,7 +125,8 @@ const login = (dispatch) => {
 
 const signout = (dispatch) => {
   return () => {
-    dispatch({ type: "signout" });
+    alert("Trying to sign out");
+    dispatch({ type: "LOGOUT" });
   };
 };
 

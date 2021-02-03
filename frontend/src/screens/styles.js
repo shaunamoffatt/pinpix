@@ -1,15 +1,31 @@
 import { StyleSheet } from "react-native";
-
-const pink = "#d81159";
-const navy = "#07002e";
+import Colors from "../constants/Colors";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
+    //padding: 24,
     backgroundColor: "white",
-    zIndex: 0,
-    elevation: 0,
+  },
+  contentContainer:{
+    flex:1,
+    backgroundColor: "white",
+    padding: 24
+  },
+  text: {
+    fontSize: 20,
+  },
+  centerText: {
+    fontSize: 20,
+    alignSelf: "center",
+    fontWeight: "bold",
+  },
+  largeText: {
+    fontSize: 65,
+    fontWeight: "bold",
+    color: Colors.navy,
+    marginTop: 30,
+    marginBottom: 10,
   },
   formView: {
     marginTop: 100,
@@ -18,20 +34,35 @@ const styles = StyleSheet.create({
   form: {
     flex: 2,
   },
-  center:{
+  center: {
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   image: {
     flex: 0.75,
-    marginTop: 100,
-    width: null,
-    height: null,
+    width: undefined,
+    height: undefined,
     resizeMode: "contain",
+    marginTop:90,
+    padding: 20
+  },
+  profileImage: {
+    width: 150,
+    height: 150,
+    borderRadius: 100,
+    overflow: "hidden",
+  },
+  profilePicBar: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    marginTop: 24,
+    marginHorizontal: 16,
   },
   buttonPink: {
     width: "100%",
-    backgroundColor: pink,
+    backgroundColor: Colors.pink,
     borderRadius: 10,
     height: 50,
     alignItems: "center",
@@ -44,7 +75,7 @@ const styles = StyleSheet.create({
   },
   buttonWhite: {
     backgroundColor: "white",
-    borderColor: pink,
+    borderColor: Colors.pink,
     width: "100%",
     borderRadius: 10,
     borderWidth: 1,
@@ -55,21 +86,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   colorPink: {
-    color: pink,
+    color: Colors.pink,
   },
   input: {
     margin: 20,
     height: 50,
-    borderColor: pink,
+    borderColor: Colors.pink,
     borderWidth: 1,
     borderRadius: 10,
-  },
-  largeText: {
-    fontSize: 65,
-    fontWeight: "bold",
-    color: navy,
-    marginTop: 30,
-    marginBottom: 10,
   },
 });
 
