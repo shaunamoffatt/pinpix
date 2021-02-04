@@ -1,6 +1,6 @@
 import React, { useState, useEffect, fragment } from "react";
 //import { ActivityIndicator } from "react-native";
-import { styles } from "../styles";
+import { styles } from "../../assets/styles/styles";
 import Colors from "../../constants/Colors";
 import { ActivityIndicator } from 'react-native-paper';
 import MapView from "react-native-maps";

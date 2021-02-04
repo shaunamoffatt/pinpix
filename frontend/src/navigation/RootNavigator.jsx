@@ -15,9 +15,10 @@ import { AsyncStorage } from "react-native";
 import BottomTabNavigator from "./BottomTabNavigator";
 
 import AsyncStorageItems from "../constants/AsyncStorageItems";
-import { Context as AuthContext } from "../utils/AuthContext";
+import { Context as AuthContext } from "../context/AuthContext";
 
 const RootStack = createStackNavigator();
+
 //https://reactnavigation.org/docs/auth-flow/
 const MainNavigator = ({}) => {
   const { state } = useContext(AuthContext);

@@ -4,7 +4,7 @@
 // Import React and Component
 import React, { useState, useEffect, fragment } from "react";
 import { ActivityIndicator, View, StyleSheet, Image, Text } from "react-native";
-
+import { styles } from "../../assets/styles/styles";
 class SplashScreen extends React.Component {
 
   performTimeConsumingTask = async () => {

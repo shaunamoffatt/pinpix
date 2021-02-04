@@ -12,8 +12,8 @@ import {
 //fancy inputs
 import { Hoshi } from "react-native-textinput-effects";
 
-import { styles } from "../styles";
-import { Context as AuthContext } from "../../utils/AuthContext";
+import { styles } from "../../assets/styles/styles";
+import { Context as AuthContext } from "../../context/AuthContext";
 
 const RegisterScreen = (props) => {
   const [email, setEmail] = useState("");

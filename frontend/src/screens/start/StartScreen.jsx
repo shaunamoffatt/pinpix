@@ -2,7 +2,6 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   Image,
-  StyleSheet,
   Text,
   View,
   TextInput,
@@ -10,12 +9,12 @@ import {
 } from "react-native";
 import logo from "../../assets/logo.png";
 
-import { styles } from "../styles";
+import { styles } from "../../assets/styles/styles";
 
 const StartScreen = (props) => {
   return (
     <View style={styles.container}>
-      <View style={(styles.contentContainer )}>
+      <View style={styles.contentContainer}>
         <Image source={logo} style={styles.image} />
         <TouchableOpacity
           style={styles.buttonPink}

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { styles } from "../styles";
+import { styles } from "../../assets/styles/styles";
 const EditPhotoScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>

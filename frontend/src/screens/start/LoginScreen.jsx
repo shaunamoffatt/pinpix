@@ -12,9 +12,9 @@ import {
 } from "react-native";
 //fancy inputs
 import { Hoshi } from "react-native-textinput-effects";
-import { styles } from "../styles";
+import { styles } from "../../assets/styles/styles";
 
-import { Context as AuthContext } from "../../utils/AuthContext";
+import { Context as AuthContext } from "../../context/AuthContext";
 
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
@@ -23,7 +23,7 @@ const LoginScreen = (props) => {
 
   return (
     <ScrollView style={styles.container}>
-      <View>
+      <View style={styles.contentContainer}>
         <Text style={styles.largeText}>Welcome back!</Text>
         <Hoshi
           label={"Email"}

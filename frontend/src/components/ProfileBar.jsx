@@ -6,11 +6,11 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { Context as AuthContext } from "../utils/AuthContext";
+import { Context as AuthContext } from "../context/AuthContext";
 
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
-import { styles } from "../screens/styles";
+import { styles } from "../assets/styles/styles";
 import { Avatar, Button } from "react-native-paper";
 
 const ProfileBar = ({ navigation, route }) => {

@@ -20,6 +20,8 @@
     "expo-app-loading": "^1.0.1",
     "expo-constants": "~9.3.3",
     "expo-font": "~8.4.0",
+    "expo-location": "~10.0.0",
+    "expo-secure-store": "~9.3.0",
     "expo-splash-screen": "~0.8.1",
     "expo-status-bar": "~1.0.3",
     "indicative": "^7.4.4",
@@ -27,6 +29,8 @@
     "react-dom": "16.13.1",
     "react-native-elements": "^3.1.0",
     "react-native-gesture-handler": "~1.8.0",
+    "react-native-keychain": "^6.2.0",
+    "react-native-maps": "0.27.1",
     "react-native-open-maps": "^0.3.5",
     "react-native-paper": "^4.7.1",
     "react-native-reanimated": "~1.13.0",
@@ -40,9 +44,7 @@
     "react-native-web": "~0.13.12",
     "react-native-webview": "^11.2.1",
     "react-navigation": "^4.1.1",
-    "react-navigation-stack": "^2.10.2",
-    "expo-location": "~10.0.0",
-    "react-native-maps": "0.27.1"
+    "react-navigation-stack": "^2.10.2"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

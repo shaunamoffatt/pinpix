@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import ProfileBar from "../../components/ProfileBar";
 import ProfileTabNavigator from "../../navigation/ProfileTabNavigator";
-import { styles } from "../styles";
+import { styles } from "../../assets/styles/styles";
 
 const ProfileScreen = ({}) => {
   return (
