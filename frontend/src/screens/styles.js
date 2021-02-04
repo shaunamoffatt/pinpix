@@ -12,6 +12,11 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 24
   },
+  headerRight:{
+    alignItems:"flex-end",
+    paddingRight: 20,
+    paddingTop: 40,
+  },
   text: {
     fontSize: 20,
   },
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    marginTop: 24,
+    marginTop: 10,
     marginHorizontal: 16,
   },
   buttonPink: {

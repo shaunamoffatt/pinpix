@@ -15,7 +15,7 @@ import { styles } from "../styles";
 const StartScreen = (props) => {
   return (
     <View style={styles.container}>
-      <View style={({ marginTop: 3000 },styles.contentContainer )}>
+      <View style={(styles.contentContainer )}>
         <Image source={logo} style={styles.image} />
         <TouchableOpacity
           style={styles.buttonPink}
