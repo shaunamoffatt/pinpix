@@ -23,7 +23,7 @@ const MainNavigator = ({}) => {
   const { state } = useContext(AuthContext);
   return (
     <RootStack.Navigator>
-      {state.auth_token != null ? (
+      {state.auth_token === null ? (
         // If not logged in, the user will be shown this route
         <RootStack.Screen
           name="Auth"

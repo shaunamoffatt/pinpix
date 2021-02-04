@@ -7,12 +7,12 @@ import AllPinsScreen from "../screens/profileTab/AllPinsScreen";
 import HeartedPinsScreen from "../screens/profileTab/HeartedPinsScreen";
 
 import Colors from "../constants/Colors";
-import { Ionicons, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 const Tab = createMaterialTopTabNavigator();
 
-let iconSize = 25;
-let bigIconSize = 50;
+let iconSize = 20;
+
 const ProfileTabNavigator = ({}) => {
   return (
     <Tab.Navigator
@@ -21,7 +21,7 @@ const ProfileTabNavigator = ({}) => {
         showLabel: false,
         activeTintColor: Colors.pink,
         indicatorStyle: {
-          borderBottomColor: Colors.navy,
+          borderBottomColor: Colors.pink,
           borderBottomWidth: 2,
         },
         inactiveTintColor: Colors.pink,
@@ -36,8 +36,8 @@ const ProfileTabNavigator = ({}) => {
           tabBarIcon: ({ color, size, focused }) => (
             <Ionicons
               name="location-sharp"
-              color={color}
-              size={focused ? iconSize * 1.25 : iconSize}
+              color={Colors.navy}
+              size={iconSize}
             />
           ),
         }}
@@ -48,10 +48,9 @@ const ProfileTabNavigator = ({}) => {
         options={{
           tabBarLabel: "All",
           tabBarIcon: ({ color, size, focused }) => (
-            <MaterialIcons
-              name="camera"
-              color={color}
-              size={focused ? iconSize * 1.25 : iconSize}
+            <Image
+              style={{ width: iconSize, height: iconSize }}
+              source={require("../assets/colourwheel.png")}
             />
           ),
           tabBarBadge: null,
@@ -63,11 +62,7 @@ const ProfileTabNavigator = ({}) => {
         options={{
           tabBarLabel: "Hearted",
           tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons
-              name="ios-heart"
-              color={color}
-              size={focused ? iconSize * 1.25 : iconSize}
-            />
+            <Ionicons name="ios-heart" color={Colors.pink} size={iconSize} />
           ),
         }}
       />
