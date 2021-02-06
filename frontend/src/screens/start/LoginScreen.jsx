@@ -1,19 +1,14 @@
 import React, { useState, useContext } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
-  Image,
-  StyleSheet,
   Text,
   View,
   ScrollView,
-  TextInput,
   TouchableOpacity,
-  AsyncStorage,
 } from "react-native";
 //fancy inputs
 import { Hoshi } from "react-native-textinput-effects";
 import { styles } from "../../assets/styles/styles";
-
+import Colors from "../../constants/Colors";
 import { Context as AuthContext } from "../../context/AuthContext";
 
 const LoginScreen = (props) => {
@@ -27,7 +22,7 @@ const LoginScreen = (props) => {
         <Text style={styles.largeText}>Welcome back!</Text>
         <Hoshi
           label={"Email"}
-          borderColor={"#d81159"}
+          borderColor={Colors.pink}
           width={"75%"}
           backgroundColor={"#FFF"}
           value={email}
@@ -39,7 +34,7 @@ const LoginScreen = (props) => {
         />
         <Hoshi
           label={"Password"}
-          borderColor={"#d81159"}
+          borderColor={Colors.pink}
           width={"75%"}
           backgroundColor={"#FFF"}
           value={password}
@@ -49,7 +44,9 @@ const LoginScreen = (props) => {
           autoCorrect={false}
           returnKeyType="next"
         />
-
+        {state.errorMessage ? (
+          <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+        ) : null}
         <TouchableOpacity
           style={styles.buttonPink}
           onPress={() => {
@@ -58,7 +55,6 @@ const LoginScreen = (props) => {
         >
           <Text style={styles.colorWhite}>Login</Text>
         </TouchableOpacity>
-        <StatusBar style="auto" />
       </View>
     </ScrollView>
   );

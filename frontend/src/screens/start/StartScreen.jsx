@@ -1,14 +1,8 @@
-import React from "react";
 import { StatusBar } from "expo-status-bar";
-import {
-  Image,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import logo from "../../assets/logo.png";
+import React from "react";
 
+import { Image, Text, View, TouchableOpacity } from "react-native";
+import logo from "../../assets/logo.png";
 import { styles } from "../../assets/styles/styles";
 
 const StartScreen = (props) => {

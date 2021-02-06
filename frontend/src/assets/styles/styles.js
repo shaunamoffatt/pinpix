@@ -100,6 +100,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
   },
+  errorMessage: {
+    fontSize: 16,
+    color: Colors.pink,
+    marginTop: 15
+  },
 });
 
 export { styles };
