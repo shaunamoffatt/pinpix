@@ -6,6 +6,10 @@ class User
   field :name, type: String
   field :email, type: String
   field :password_digest, type: String
+
+  embeds_one :profile_picture, :cascade_callbacks => true
+  has_many :pinpost
+
   # encrypt password
   has_secure_password
   # Validations
