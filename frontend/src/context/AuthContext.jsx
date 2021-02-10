@@ -3,6 +3,8 @@ import createDataContext from "./createDataContext";
 import { AuthReducer, initialState } from "../store/reducers/auth_reducers";
 import { AsyncStorage } from "react-native";
 
+import * as ACTION_TYPES from "../store/actions/action_types";
+
 import pinpixApi from "../api/pinpixApi";
 //TODO find better place for api URLS
 let apiUrl = "http://localhost:3000/";
@@ -15,8 +17,8 @@ import * as SecureStore from "expo-secure-store";
 const retrieveToken = (dispatch) => async ({}) => {
   try {
     let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
-    console.log("Token" + token);
-    dispatch({ type: "RETRIEVE_TOKEN", auth_token: token });
+
+    dispatch({ type: ACTION_TYPES.RETRIEVE_TOKEN, auth_token: token });
   } catch (error) {
     console.log(
       "Something went wrong retrieving authtoken from storage",
@@ -25,14 +27,8 @@ const retrieveToken = (dispatch) => async ({}) => {
   }
 };
 
-const setItem = async (name, data) => {
-  try {
-    await AsyncStorage.setItem(name, JSON.stringify(data));
-    console.log("data stored");
-  } catch (error) {
-    // Error saving data
-    console.log("AsyncStorage save error: " + error.message);
-  }
+const clearErrorMessage = (dispatch) => () => {
+  dispatch({ type: ACTION_TYPES.CLEAR_ERROR_MESSAGE });
 };
 
 const register = (dispatch) => async ({
@@ -60,22 +56,28 @@ const register = (dispatch) => async ({
       );
       //Saves states and dispatches loginsuccess
       dispatch({
-        type: "LOGIN_SUCCESS",
+        type: ACTION_TYPES.LOGIN_SUCCESS,
         payload: response.data.auth_token,
       });
     } catch (error) {
-      console.log(error.message);
       dispatch({
-        type: "LOGIN_FAILURE",
+        type: ACTION_TYPES.LOGIN_FAILURE,
+        errorMessage: "Failed to Register",
       });
     }
   } else {
-    ///password_error: "Passwords not the same";
-    console.log(password_error);
+    password_error = "Passwords not the same";
+    dispatch({
+      type: ACTION_TYPES.LOGIN_FAILURE,
+      errorMessage: "Passwords Not the same",
+    });
   }
 };
 
 const login = (dispatch) => async ({ email, password }) => {
+  dispatch({
+    type: ACTION_TYPES.API_CALL,
+  });
   // Authenticate user
   try {
     const response = await pinpixApi.post(authenticatePath, {
@@ -89,13 +91,13 @@ const login = (dispatch) => async ({ email, password }) => {
     );
     //Saves states and dispatches loginsuccess
     dispatch({
-      type: "LOGIN_SUCCESS",
+      type: ACTION_TYPES.LOGIN_SUCCESS,
       payload: response.data.auth_token,
     });
   } catch (error) {
-    console.log(error.message);
     dispatch({
-      type: "LOGIN_FAILURE",
+      type: ACTION_TYPES.LOGIN_FAILURE,
+      errorMessage: error.message,
     });
   }
 };
@@ -108,14 +110,12 @@ const signout = (dispatch) => {
       SecureStore.deleteItemAsync(AsyncStorageItems.AUTH_TOKEN);
       //Reset states
       dispatch({ type: "LOGOUT" });
-    } catch (error) {
-      console.log(error.message);
-    }
+    } catch (error) {}
   };
 };
 
 export const { Provider, Context } = createDataContext(
   AuthReducer,
-  { login, register, signout, retrieveToken },
+  { login, register, signout, retrieveToken, clearErrorMessage },
   initialState
 );

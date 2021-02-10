@@ -13,6 +13,7 @@ class User
   # encrypt password
   has_secure_password
   # Validations
-  validates_presence_of :email, :password_digest
-  validates_uniqueness_of :email
+  validates_presence_of :email, message: "Please enter a password"
+  validates_presence_of :password_digest, message: "Password Problem"
+  validates_uniqueness_of :email, message: "Email already exists"
 end
