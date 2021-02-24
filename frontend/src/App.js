@@ -1,8 +1,9 @@
 import React from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
-import MainStackNavigator from "./navigation/RootNavigator";
+
 import { Provider as AuthProvider } from "./context/AuthContext";
+import RootNavigator from "./navigation/RootNavigator";
 import { Provider as PaperProvider } from "react-native-paper";
 import { registerRootComponent } from "expo"; // import it explicitly
 
@@ -11,7 +12,7 @@ const App = () => {
     <PaperProvider>
       <AuthProvider>
         <NavigationContainer>
-          <MainStackNavigator />
+          <RootNavigator />
         </NavigationContainer>
       </AuthProvider>
     </PaperProvider>

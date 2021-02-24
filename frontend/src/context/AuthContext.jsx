@@ -17,9 +17,17 @@ import * as SecureStore from "expo-secure-store";
 const retrieveToken = (dispatch) => async ({}) => {
   try {
     let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
-
     dispatch({ type: ACTION_TYPES.RETRIEVE_TOKEN, auth_token: token });
   } catch (error) {
+    try {
+      alert("Trying to sign out");
+      //Remove the auth token on the phone
+      SecureStore.deleteItemAsync(AsyncStorageItems.AUTH_TOKEN);
+      //Reset states
+      dispatch({ type: "LOGOUT" });
+    } catch (error) {
+      console.log(error);
+    }
     console.log(
       "Something went wrong retrieving authtoken from storage",
       error
@@ -97,7 +105,7 @@ const login = (dispatch) => async ({ email, password }) => {
   } catch (error) {
     dispatch({
       type: ACTION_TYPES.LOGIN_FAILURE,
-      errorMessage: error.message,
+      errorMessage: error.response.data.error,
     });
   }
 };
@@ -109,7 +117,7 @@ const signout = (dispatch) => {
       //Remove the auth token on the phone
       SecureStore.deleteItemAsync(AsyncStorageItems.AUTH_TOKEN);
       //Reset states
-      dispatch({ type: "LOGOUT" });
+      dispatch({ type: ACTION_TYPES.LOGOUT });
     } catch (error) {}
   };
 };

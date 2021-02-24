@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SplashScreen from "../screens/start/SplashScreen";
 
 import BottomTabNavigator from "./BottomTabNavigator";
+
 import AuthStackNavigator from "./AuthStackNavigator";
 
 import { Context as AuthContext } from "../context/AuthContext";
@@ -11,7 +12,7 @@ import { Context as AuthContext } from "../context/AuthContext";
 const RootStack = createStackNavigator();
 
 //https://reactnavigation.org/docs/auth-flow/
-const MainNavigator = ({}) => {
+const RootNavigator = ({}) => {
   const { state } = useContext(AuthContext);
 
   if (state.isLoading) {
@@ -40,4 +41,4 @@ const MainNavigator = ({}) => {
   );
 };
 
-export default MainNavigator;
+export default RootNavigator;
