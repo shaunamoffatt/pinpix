@@ -1,94 +1,137 @@
 import React, { useState } from "react";
 import Onboarding from "react-native-onboarding-swiper";
 import {
-  Text,
   View,
-  Image,
   Dimensions,
   SafeAreaView,
   ScrollView,
-  PixelRatio,
-  ImageBackground,
+  StatusBar,
 } from "react-native";
 
 import Colors from "../../constants/Colors";
-//import logo from "../../assets/logo.png";
+
 import acorn from "../../assets/onboarding/acorn.png";
 import support from "../../assets/onboarding/support.png";
 import hands from "../../assets/onboarding/hands.png";
 import membership from "../../assets/onboarding/membership.png";
 import leaves from "../../assets/onboarding/leaves.png";
-import { SvgMembers, SvgHeart, SvgLogo, SvgLocation } from "../../components/SvgComponents";
+
+import shape1 from "../../assets/onboarding/shape1.png";
+import shape2 from "../../assets/onboarding/shape2.png";
+import shape3 from "../../assets/onboarding/shape3.png";
+//import shape4 from "../../assets/onboarding/shape4.png";
+
+import OnBoardingSlide from "../../components/OnBoardingSlide";
+
+import {
+  SvgMembers,
+  SvgHeart,
+  SvgLogo,
+  SvgLocation,
+} from "../../components/SvgComponents";
+
+import { FAB } from "react-native-paper";
 
 import { styles } from "../../assets/styles/styles";
 //https://medium.com/backticks-tildes/create-a-custom-app-intro-slider-in-react-native-4308fae83ad1
+//TODO : extact onboarding component for each screen
 const OnBoardingScreen = ({}) => {
   const { width, height } = Dimensions.get("window");
+  const [sliderState, setSliderState] = useState({ currentPage: 0 });
+
+  const setSliderPage = (event: any) => {
+    const { currentPage } = sliderState;
+
+    const { x } = event.nativeEvent.contentOffset;
+
+    const indexOfNextScreen = Math.round(x / width);
+
+    if (indexOfNextScreen !== currentPage) {
+      setSliderState({
+        ...sliderState,
+        currentPage: indexOfNextScreen,
+      });
+    }
+  };
+  //<StatusBar barStyle="light-content" backgroundColor="transparent" translucent={true}/>
+  const { currentPage: pageIndex } = sliderState;
+
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView
-        horizontal={true}
-        scrollEventThrottle={16}
-        pagingEnabled={true}
-      >
-        <View style={{ width, height }}>
-          <ImageBackground source={acorn} style={styles.backgroundImage}>
-            <View style={styles.onBoardingIconCenter}>
-              <SvgLogo />
-            </View>
-            <View style={{ flex: 1.75, marginBottom: 30 }}>
-              <Text style={styles.largeText}>WELCOME</Text>
-              <Text style={styles.mediumText}>
-                Thank you for helping us to establish and conserve the native
-                woodlands of Ireland.
-              </Text>
-            </View>
-          </ImageBackground>
-        </View>
+    <>
+      <StatusBar barStyle="dark-content" />
 
-        <View style={{ width, height }}>
-          <ImageBackground source={support} style={styles.backgroundImage}>
-            <View style={styles.onBoardingIconCenter}>
-              <SvgHeart />
-            </View>
-            <View style={{ flex: 1.75, marginBottom: 30 }}>
-              <Text style={styles.largeText}>SUPPORT US</Text>
-              <Text style={styles.mediumText}>
-                Pledge trees or make a Donatation.
-              </Text>
-            </View>
-          </ImageBackground>
-        </View>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView
+          style={{ flex: 1 }}
+          horizontal={true}
+          scrollEventThrottle={16}
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={false}
+          onScroll={(event: any) => {
+            setSliderPage(event);
+          }}
+        >
+            {/* WELCOME */}
+          <OnBoardingSlide
+            imageSource={acorn}
+            overlayImageSource={shape1}
+            SvgComponent={<SvgLogo />}
+            titleText="WELCOME"
+            contentText="Thank you for helping us to establish and conserve the native woodlands of Ireland."
+          />
+          {/* SUPPORT US */}
+          <OnBoardingSlide
+            imageSource={support}
+            overlayImageSource={shape3}
+            SvgComponent={<SvgHeart />}
+            titleText="SUPPORT US"
+            contentText="Pledge trees or make a Donatation."
+          />
+          {/* MEMBER- SHIP" */}
+          <OnBoardingSlide
+            imageSource={membership}
+            overlayImageSource={shape2}
+            SvgComponent={<SvgMembers />}
+            titleText="MEMBER- SHIP"
+            contentText="Come together monthly to plant, prepare and care for our trees."
+          />
 
-        <View style={{ width, height }}>
-          <ImageBackground source={membership} style={styles.backgroundImage}>
-            <View style={styles.onBoardingIconCenter}>
-              <SvgMembers />
-            </View>
-            <View style={{ flex: 1.75, marginBottom: 30 }}>
-              <Text style={styles.largeText}>MEMBER- SHIP</Text>
-              <Text style={styles.mediumText}>
-                Come together monthly to plant, prepare and care for our trees.
-              </Text>
-            </View>
-          </ImageBackground>
+          <OnBoardingSlide
+            imageSource={leaves}
+            overlayImageSource={shape1}
+            SvgComponent={<SvgLocation />}
+            titleText="SEE OUR WORK"
+            contentText="Locate our Trees Planting Locations and Enjoy our active Blogs."
+          />
+        </ScrollView>
+        {/* Bottom Slider Circles */}
+        <View style={{ flexDirection: "row" }}>
+          <View style={styles.paginationWrapper}>
+            {Array.from(Array(4).keys()).map((key, index) => (
+              <View
+                style={[
+                  styles.paginationDots,
+                  { opacity: pageIndex === index ? 1 : 0.35 },
+                ]}
+                key={index}
+              />
+            ))}
+          </View>
+          {/* IF on the last slider view show the Next button */}
+          <View style={styles.fab}>
+            {pageIndex === 3 ? (
+              <FAB
+                styles={styles.fab}
+                small
+                color="white"
+                icon="plus"
+                onPress={() => alert(pageIndex)}
+              />
+            ) : null}
+          </View>
         </View>
-
-        <View style={{ width, height }}>
-          <ImageBackground source={leaves} style={styles.backgroundImage}>
-            <View style={styles.onBoardingIconCenter}>
-              <SvgLocation />
-            </View>
-            <View style={{ flex: 1.75, marginBottom: 30 }}>
-              <Text style={styles.largeText}>SEE OUR WORK</Text>
-              <Text style={styles.mediumText}>
-                Locate our Trees Planting Locations and Enjoy our active Blogs.
-              </Text>
-            </View>
-          </ImageBackground>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 };
 export default OnBoardingScreen;

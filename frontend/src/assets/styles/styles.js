@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
   onBoardingIconCenter: {
     flex: 0.4,
     marginTop: 75,
-    marginLeft:50,
-    marginRight:50,
+    marginLeft: 50,
+    marginRight: 50,
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
@@ -79,6 +79,13 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     resizeMode: "cover",
+  },
+  backgroundContainer: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   profilePicBar: {
     flex: 1,
@@ -127,6 +134,35 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: Colors.pink,
     marginTop: 15,
+  },
+  overlay: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  },
+  paginationWrapper: {
+    position: "absolute",
+    bottom: 20,
+    left: 0,
+    right: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  paginationDots: {
+    height: 10,
+    width: 10,
+    borderRadius: 10 / 2,
+    backgroundColor: "#fff",
+    marginLeft: 10,
+  },
+  fab: {
+    position: "absolute",
+    margin: 16,
+    right: 0,
+    bottom: 0,
   },
 });
 
