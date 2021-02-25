@@ -27,7 +27,7 @@ const RootNavigator = ({}) => {
         <RootStack.Screen
           name="Auth"
           component={AuthStackNavigator}
-          options={{ headerShown: false }}
+          options={{ headerShown: false ,tabBarVisible: false}}
         />
       ) : (
         // When logged in, the user will be shown this route

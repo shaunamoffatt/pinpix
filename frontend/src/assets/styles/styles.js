@@ -5,6 +5,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     //padding: 24,
+    backgroundColor: Colors.greenH,
+  },
+    containerWhite: {
+    flex: 1,
+    //padding: 24,
     backgroundColor: "white",
   },
   contentContainer: {
@@ -25,7 +30,15 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "bold",
   },
-  largeText: {
+  largeTextWhite: {
+    fontSize: 60,
+    fontWeight: "bold",
+    color: "white",
+    marginTop: 30,
+    marginBottom: 10,
+    paddingLeft: 24,
+  },
+    largeText: {
     fontSize: 60,
     fontWeight: "bold",
     color: "white",
@@ -69,6 +82,13 @@ const styles = StyleSheet.create({
     marginTop: 90,
     padding: 20,
   },
+    logo: {
+    flex:0.5,
+    width: 150,
+    height: 150,
+    resizeMode: "contain",
+    marginBottom: 75
+  },
   profileImage: {
     width: 150,
     height: 150,
@@ -105,15 +125,25 @@ const styles = StyleSheet.create({
     marginTop: 40,
     marginBottom: 10,
   },
+  buttonSmallRound: {
+    width: 50,
+    height: 50,
+    backgroundColor: Colors.lightH,
+    borderRadius: 100,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   colorWhite: {
     color: "white",
+     fontSize: 18,
+    fontWeight: "bold",
   },
   buttonWhite: {
-    backgroundColor: "white",
-    borderColor: Colors.pink,
-    width: "100%",
+    backgroundColor: "rgba(0,0,0,0.3)",
+    borderColor: "white",
+    width: "75%",
     borderRadius: 10,
-    borderWidth: 1,
+    borderWidth: 2,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
@@ -163,6 +193,7 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
+    color: Colors.greenH,
   },
 });
 

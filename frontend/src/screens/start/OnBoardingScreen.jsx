@@ -6,6 +6,9 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
+  FlatList,
+  TouchableOpacity,
+  Text
 } from "react-native";
 
 import Colors from "../../constants/Colors";
@@ -30,12 +33,13 @@ import {
   SvgLocation,
 } from "../../components/SvgComponents";
 
+import { FontAwesome } from '@expo/vector-icons'; 
 import { FAB } from "react-native-paper";
 
 import { styles } from "../../assets/styles/styles";
 //https://medium.com/backticks-tildes/create-a-custom-app-intro-slider-in-react-native-4308fae83ad1
 //TODO : extact onboarding component for each screen
-const OnBoardingScreen = ({}) => {
+const OnBoardingScreen = (props) => {
   const { width, height } = Dimensions.get("window");
   const [sliderState, setSliderState] = useState({ currentPage: 0 });
 
@@ -71,8 +75,9 @@ const OnBoardingScreen = ({}) => {
             setSliderPage(event);
           }}
         >
-            {/* WELCOME */}
+          {/* WELCOME */}
           <OnBoardingSlide
+            index={pageIndex}
             imageSource={acorn}
             overlayImageSource={shape1}
             SvgComponent={<SvgLogo />}
@@ -81,6 +86,7 @@ const OnBoardingScreen = ({}) => {
           />
           {/* SUPPORT US */}
           <OnBoardingSlide
+            index={pageIndex}
             imageSource={support}
             overlayImageSource={shape3}
             SvgComponent={<SvgHeart />}
@@ -89,6 +95,7 @@ const OnBoardingScreen = ({}) => {
           />
           {/* MEMBER- SHIP" */}
           <OnBoardingSlide
+            index={pageIndex}
             imageSource={membership}
             overlayImageSource={shape2}
             SvgComponent={<SvgMembers />}
@@ -97,6 +104,7 @@ const OnBoardingScreen = ({}) => {
           />
 
           <OnBoardingSlide
+            index={pageIndex}
             imageSource={leaves}
             overlayImageSource={shape1}
             SvgComponent={<SvgLocation />}
@@ -120,13 +128,14 @@ const OnBoardingScreen = ({}) => {
           {/* IF on the last slider view show the Next button */}
           <View style={styles.fab}>
             {pageIndex === 3 ? (
-              <FAB
-                styles={styles.fab}
-                small
-                color="white"
-                icon="plus"
-                onPress={() => alert(pageIndex)}
-              />
+      <TouchableOpacity
+        style={styles.buttonSmallRound}
+        onPress={() => {
+           props.navigation.navigate("Start");
+        }}
+      >
+       <FontAwesome name="arrow-right" size={24} color="black" />
+      </TouchableOpacity>
             ) : null}
           </View>
         </View>

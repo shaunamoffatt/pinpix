@@ -7,5 +7,11 @@ export default {
   yellowDark: "#ffbc42",
   yellowLight: "#ffd485",
   grey: "#f2f2f2",
-  greyDark: "#52575D"
+  greyDark: "#52575D",
+
+  greenDH: "#1c450d",
+  greenH: "#87B87A",
+  orangeH: "#E17E66",
+  brownH: "#5C4742",
+  lightH: "#F4F4F6",
 };
