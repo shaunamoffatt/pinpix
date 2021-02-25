@@ -21,12 +21,12 @@ const BottomTabNavigator = ({}) => {
       tabBarOptions={{
         showIcon: true,
         showLabel: false,
-        activeTintColor: Colors.pink,
+        activeTintColor: Colors.orangeH,
         indicatorStyle: {
-          borderBottomColor: Colors.navy,
+          borderBottomColor: "black",
           borderBottomWidth: 2,
         },
-        inactiveTintColor: Colors.greenLight,
+        inactiveTintColor: Colors.earthGreen,
       }}
       initialRouteName="Home"
     >

@@ -22,7 +22,7 @@ const HomeScreen = ({}) => {
   });
 
   if (!state.mapLoaded) {
-    return <ActivityIndicator size="large" color={Colors.greenLight} style={styles.container}/>;
+    return <ActivityIndicator size="large" color={Colors.earthGreen} style={styles.container}/>;
   }
 
   return <MapView region={state.region} style={{ flex: 1 }} />;

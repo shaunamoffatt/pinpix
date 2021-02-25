@@ -4,12 +4,15 @@ import StartScreen from "../screens/start/StartScreen";
 import SplashScreen from "../screens/start/SplashScreen";
 import LoginScreen from "../screens/start/LoginScreen";
 import RegisterScreen from "../screens/start/RegisterScreen";
+import MembersAuthScreen from "../screens/start/MembersAuthScreen";
+import UsersAuthScreen from "../screens/start/UsersAuthScreen";
+
 import OnBoardingScreen from "../screens/start/OnBoardingScreen";
 const AuthStack = createStackNavigator();
 const AuthStackNavigator = ({}) => {
   return (
     <AuthStack.Navigator>
-        <AuthStack.Screen
+      <AuthStack.Screen
         name="Start1"
         component={OnBoardingScreen}
         options={{ headerShown: false }}
@@ -19,6 +22,8 @@ const AuthStackNavigator = ({}) => {
         component={StartScreen}
         options={{ headerShown: false }}
       />
+      <AuthStack.Screen name="Member" component={MembersAuthScreen} />
+      <AuthStack.Screen name="User" component={UsersAuthScreen} />
       <AuthStack.Screen name="Login" component={LoginScreen} />
       <AuthStack.Screen name="Register" component={RegisterScreen} />
     </AuthStack.Navigator>

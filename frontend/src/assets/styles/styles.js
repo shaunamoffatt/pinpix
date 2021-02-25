@@ -5,9 +5,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     //padding: 24,
-    backgroundColor: Colors.greenH,
+    backgroundColor: Colors.earthGreen,
   },
-    containerWhite: {
+  containerWhite: {
     flex: 1,
     //padding: 24,
     backgroundColor: "white",
@@ -30,15 +30,15 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     fontWeight: "bold",
   },
-  largeTextWhite: {
+  largeTextDark: {
     fontSize: 60,
     fontWeight: "bold",
-    color: "white",
+    color: Colors.darkH,
     marginTop: 30,
-    marginBottom: 10,
-    paddingLeft: 24,
+    marginBottom: 40,
+    paddingLeft: 50,
   },
-    largeText: {
+  largeText: {
     fontSize: 60,
     fontWeight: "bold",
     color: "white",
@@ -51,6 +51,14 @@ const styles = StyleSheet.create({
     color: "white",
     margin: 25,
     marginTop: 10,
+    marginRight: 50,
+  },
+  mediumTextDark: {
+    fontSize: 20,
+    color: Colors.darkH,
+    // margin: 25,
+    marginTop: 10,
+    marginLeft: 50,
     marginRight: 50,
   },
   formView: {
@@ -82,12 +90,12 @@ const styles = StyleSheet.create({
     marginTop: 90,
     padding: 20,
   },
-    logo: {
-    flex:0.5,
+  logo: {
+    flex: 0.5,
     width: 150,
     height: 150,
     resizeMode: "contain",
-    marginBottom: 75
+    marginBottom: 75,
   },
   profileImage: {
     width: 150,
@@ -116,13 +124,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   buttonPink: {
-    width: "100%",
-    backgroundColor: Colors.pink,
+    width: "75%",
+    backgroundColor: Colors.earthGreen,
     borderRadius: 10,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    marginTop: 50,
     marginBottom: 10,
   },
   buttonSmallRound: {
@@ -135,11 +143,11 @@ const styles = StyleSheet.create({
   },
   colorWhite: {
     color: "white",
-     fontSize: 18,
+    fontSize: 18,
     fontWeight: "bold",
   },
   buttonWhite: {
-    backgroundColor: "rgba(0,0,0,0.3)",
+    backgroundColor: "rgba(0,0,0,0.4)",
     borderColor: "white",
     width: "75%",
     borderRadius: 10,
@@ -151,18 +159,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   colorPink: {
-    color: Colors.pink,
+    color: Colors.earthGreen,
   },
   input: {
     margin: 20,
     height: 50,
-    borderColor: Colors.pink,
+    borderColor: Colors.earthGreen,
     borderWidth: 1,
     borderRadius: 10,
   },
   errorMessage: {
     fontSize: 16,
-    color: Colors.pink,
+    color: Colors.orangeH,
     marginTop: 15,
   },
   overlay: {
@@ -193,7 +201,7 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
-    color: Colors.greenH,
+    color: Colors.earthGreen,
   },
 });
 

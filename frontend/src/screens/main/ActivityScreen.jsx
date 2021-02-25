@@ -4,8 +4,9 @@ import { styles } from "../../assets/styles/styles";
 
 const ActivityScreen = ({ navigation, route }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.largeText}>ActivityScreen</Text>
+    <View style={styles.containerWhite}>
+      <Text style={styles.largeTextDark}>Blog Screen</Text>
+       <Text style={styles.mediumTextDark}>Here- there could be a place members (given access) could upload Blogs. Normal Users could view them</Text>
     </View>
   );
 };

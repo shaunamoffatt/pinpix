@@ -50,13 +50,13 @@ const AuthForm = ({
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.containerWhite}>
       <View style={styles.contentContainer}>
-        <Text style={styles.largeText}>{headerText}</Text>
-        {callingApi ? <Text>TRUE</Text> : <Text>FALSE</Text>}
+        <Text style={styles.largeTextDark}>{headerText}</Text>
+        {/* {callingApi ? <Text>TRUE</Text> : <Text>FALSE</Text>} */}
         <Hoshi
           label={"Email"}
-          borderColor={Colors.pink}
+          borderColor={Colors.earthGreen}
           backgroundColor={"#FFF"}
           value={email}
           onChangeText={setEmail}
@@ -67,7 +67,7 @@ const AuthForm = ({
         />
         <Hoshi
           label={"Password"}
-          borderColor={Colors.pink}
+          borderColor={Colors.earthGreen}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -75,7 +75,7 @@ const AuthForm = ({
         {passwordConfirm ? (
           <Hoshi
             label={"Confirm Password"}
-            borderColor={Colors.pink}
+            borderColor={Colors.earthGreen}
             backgroundColor={"#FFF"}
             value={password_confirmation}
             onChangeText={setPasswordConfirmation}

@@ -30,7 +30,7 @@ const ProfileBar = ({ navigation, route }) => {
             signout();
           }}
         >
-          <FontAwesome name="sign-out" size={24} color={Colors.navy} />
+          <FontAwesome name="sign-out" size={24} color={Colors.darkH} />
         </TouchableOpacity>
       </View>
       {/** PROFILE PICTURES AND FOLLOWER SECTION */}
@@ -62,7 +62,7 @@ const ProfileBar = ({ navigation, route }) => {
         </TouchableOpacity>
       </View>
       {/** USER NAME SECTION */}
-      <View style={styles.container}>
+      <View style={styles.containerWhite}>
         <Text style={styles.centerText}>{userName}</Text>
       </View>
     </View>

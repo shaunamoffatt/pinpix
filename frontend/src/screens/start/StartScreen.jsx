@@ -1,7 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 
-import { Image, Text, View, TouchableOpacity, ImageBackground } from "react-native";
+import {
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import logo from "../../assets/hometreewhite.png";
 import hands from "../../assets/onboarding/hands.png";
 import { styles } from "../../assets/styles/styles";
@@ -33,15 +39,16 @@ const StartScreen = (props) => {
         <TouchableOpacity
           style={styles.buttonWhite}
           onPress={() => {
-            props.navigation.navigate("Login");
+            props.navigation.navigate("User");
           }}
         >
           <Text style={styles.colorWhite}>Pledge or Donate</Text>
         </TouchableOpacity>
+        
         <TouchableOpacity
           style={styles.buttonWhite}
           onPress={() => {
-            props.navigation.navigate("Register");
+            props.navigation.navigate("Member");
           }}
         >
           <Text style={styles.colorWhite}>Members or Volunteers</Text>

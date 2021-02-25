@@ -6,7 +6,7 @@ import { styles } from "../../assets/styles/styles";
 
 const ProfileScreen = ({}) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.containerWhite}>
       <ScrollView showVeritcalScrollIndicator={false}>
         <ProfileBar />
         <ProfileTabNavigator />
