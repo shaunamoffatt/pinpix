@@ -7,4 +7,7 @@ import axios from "axios";
 // $ adb -s <device name> reverse tcp:3000 tcp:3000
 export default axios.create({
   baseURL: "http://localhost:3000/",
+  headers: {
+    Accept: "application/json",
+  },
 });

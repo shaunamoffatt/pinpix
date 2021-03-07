@@ -7,7 +7,6 @@ import * as ACTION_TYPES from "../store/actions/action_types";
 
 import pinpixApi from "../api/pinpixApi";
 //TODO find better place for api URLS
-let apiUrl = "http://localhost:3000/";
 let authenticatePath = "authenticate";
 let usersPath = "users";
 //TODO find a better place for this too

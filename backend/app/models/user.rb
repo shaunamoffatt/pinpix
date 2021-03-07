@@ -10,10 +10,12 @@ class User
   embeds_one :profile_picture, :cascade_callbacks => true
   has_many :pinpost
 
+  has_many :post
   # encrypt password
   has_secure_password
   # Validations
   validates_presence_of :email, message: "Please enter a password"
   validates_presence_of :password_digest, message: "Password Problem"
   validates_uniqueness_of :email, message: "Email already exists"
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
 end

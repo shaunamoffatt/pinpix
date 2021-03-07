@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     //backgroundColor: "white",
     padding: 24,
+
   },
   headerRight: {
     alignItems: "flex-end",
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     color: Colors.darkH,
     marginTop: 30,
     marginBottom: 40,
-    paddingLeft: 50,
+    //paddingLeft: 50,
   },
   largeText: {
     fontSize: 60,
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   buttonPink: {
-    width: "75%",
+    width: "100%",
     backgroundColor: Colors.earthGreen,
     borderRadius: 10,
     height: 50,

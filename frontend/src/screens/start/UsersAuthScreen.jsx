@@ -16,7 +16,7 @@ import { Video } from "expo";
 const UsersAuthScreen = (props) => {
   return (
     <View style={styles.containerWhite}>
-      <View style={styles.center}>
+      <View style={styles.contentContainer}>
         <Text style={styles.largeTextDark}>Free User Account!</Text>
         <Text style={styles.mediumTextDark}>
           *Details and imagery on free users account meaning etc

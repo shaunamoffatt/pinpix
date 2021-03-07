@@ -16,7 +16,7 @@ import { Video } from "expo";
 const MembersAuthScreen = (props) => {
   return (
     <View style={styles.containerWhite}>
-      <View style={styles.center}>
+      <View style={styles.contentContainer}>
         <Text style={styles.largeTextDark}>Member- ships</Text>
         <Text style={styles.mediumTextDark}>*Details and imagery on membership meaning etc</Text>
         <TouchableOpacity
