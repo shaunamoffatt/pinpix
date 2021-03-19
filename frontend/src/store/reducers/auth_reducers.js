@@ -5,6 +5,7 @@ import * as SecureStore from "expo-secure-store";
 // Code adapted from "Building react hooks front end app" tutorial
 //https://www.freecodecamp.org/news/build-a-react-hooks-front-end-app-with-routing-and-authentication/
 export const initialState = {
+  id: null,
   isLoading: true,
   callingApi: false,
   auth_token: null,
@@ -27,7 +28,8 @@ export const AuthReducer = (state = initialState, action) => {
     case ACTION_TYPES.LOGIN_SUCCESS:
       return {
         ...state,
-        auth_token: action.payload,
+        id: action.id,
+        auth_token: action.auth_token,
         isLoading: false,
         callingApi: false,
         errorMessage: "",

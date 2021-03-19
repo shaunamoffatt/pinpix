@@ -33,27 +33,25 @@ class PostController < ApplicationController
 
   # POST create new Post
   def create
-    post = Post.new(post_params)
+    post = Post.create(post_params)
 
     unless params[:tags].blank?
       post["tags"] = params[:tags].split(",").map { |e| e.downcase }
     end
 
-    unless post[:image].blank? || post[:image] == "on"
+    unless post[:image].blank? #|| post[:image] == "on"
       image = Image.create(params.permit(:image))
     end
-
-    #@post = Post.new(data)
 
     unless image.blank?
       post.image_id = image.id
     end
 
-    if post.save
-      content = Content.new
-      content.body = params[:body]
-      content.post_id = post.id
-      content.save
+    if post.valid?
+      render json: { message: "post saved created " }
+    else
+      logger.info post.errors.full_messages
+      render json: { error: post.errors.full_messages }, status: :not_acceptable
     end
   end
 
@@ -75,10 +73,6 @@ class PostController < ApplicationController
   end
 
   def update
-    content = Content.find(params[:content_id])
-    content.body = params[:content]
-    content.save
-
     data = params.permit(:title, :body)
     if data["tags"] != ""
       data["tags"] = params[:tags].split(",")

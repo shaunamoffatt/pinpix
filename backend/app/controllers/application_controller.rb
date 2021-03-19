@@ -7,8 +7,8 @@ class ApplicationController < ActionController::API
     render json: { error: "Not Authorized" }, status: 401 unless @current_user
   end
 
-  def get_name
-    render json: { name: @current_user.email }, status: 200
+  def get_id
+    render json: { name: @current_user.id }, status: 200
   end
 
   def test_params

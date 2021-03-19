@@ -13,7 +13,8 @@ class AuthorizeApiRequest
 
   attr_reader :headers
 
-  # if the User.find() returns an empty set or decoded_auth_token returns false, @user will be nil.
+  # if the User.find() returns an empty set or decoded_auth_token returns false,
+  # @user will be nil.
   # return the user or throw an error
   def user
     @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token

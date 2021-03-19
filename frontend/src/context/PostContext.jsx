@@ -16,7 +16,9 @@ import * as SecureStore from "expo-secure-store";
 
 const retrieveToken = (dispatch) => async ({}) => {
   try {
-    return token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
+    return (token = await SecureStore.getItemAsync(
+      AsyncStorageItems.AUTH_TOKEN
+    ));
     dispatch({ type: ACTION_TYPES.RETRIEVE_TOKEN, auth_token: token });
   } catch (error) {
     try {
@@ -46,27 +48,25 @@ const createPost = (dispatch) => async ({
   // tags,
   body,
 }) => {
-  // If title not entered
-  
   //try to create post
   try {
     let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
     alert("Starting to Post" + token);
+
+    var params = new URLSearchParams();
+    params.append('title', title);
+    params.append('image', image);
+    params.append('body', body);
+   
     const response = await pinpixApi.post(
-      postPath,  {
-          title,
-          image,
-          // tag,
-          body,
-      },
+      postPath, params,
       {
         headers: {
-          "Authorization": token,
+          Authorization: token,
         },
       }
     );
-    console.log("RESPONSE : \n"+ response);
-    //Saves states and dispatches loginsuccess
+    console.log("RESPONSE : \n" + response);
   } catch (error) {
     console.log(error);
   }

@@ -8,6 +8,7 @@ import * as ACTION_TYPES from "../store/actions/action_types";
 import pinpixApi from "../api/pinpixApi";
 //TODO find better place for api URLS
 let authenticatePath = "authenticate";
+let getIdPath = "get_user_id";
 let usersPath = "users";
 //TODO find a better place for this too
 import AsyncStorageItems from "../constants/AsyncStorageItems";
@@ -61,10 +62,13 @@ const register = (dispatch) => async ({
         AsyncStorageItems.AUTH_TOKEN,
         response.data.auth_token
       );
+      //Store the users id
+      SecureStore.setItemAsync(AsyncStorageItems.ID, response.data.id);
       //Saves states and dispatches loginsuccess
       dispatch({
         type: ACTION_TYPES.LOGIN_SUCCESS,
-        payload: response.data.auth_token,
+        auth_token: response.data.auth_token,
+        id: response.data.auth_token,
       });
     } catch (error) {
       dispatch({
@@ -96,14 +100,38 @@ const login = (dispatch) => async ({ email, password }) => {
       AsyncStorageItems.AUTH_TOKEN,
       response.data.auth_token
     );
+    //Store the users id
+    SecureStore.setItemAsync(AsyncStorageItems.ID, response.data.id);
+    //TODO remove
+    console.log(response.data);
     //Saves states and dispatches loginsuccess
     dispatch({
       type: ACTION_TYPES.LOGIN_SUCCESS,
-      payload: response.data.auth_token,
+      auth_token: response.data.auth_token,
+      id: response.data.id,
     });
   } catch (error) {
     dispatch({
       type: ACTION_TYPES.LOGIN_FAILURE,
+      errorMessage: error.response.data.error,
+    });
+  }
+};
+
+const getId = (dispatch) => async ({}) => {
+  try {
+    const response = await pinpixApi.get(authenticatePath, {});
+    //Store the auth token on the phone
+    SecureStore.setItemAsync(AsyncStorageItems.USER_ID, response.data.user_id);
+    console.log(response.data);
+    //Saves states and dispatches loginsuccess
+    dispatch({
+      type: ACTION_TYPES.GET_USER_ID,
+      payload: response.data.auth_token,
+    });
+  } catch (error) {
+    dispatch({
+      //type: ACTION_TYPES.LOGIN_FAILURE,
       errorMessage: error.response.data.error,
     });
   }
