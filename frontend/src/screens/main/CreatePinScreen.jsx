@@ -51,14 +51,21 @@ const CreatePinScreen = ({ navigation, route }) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      //aspect: [4, 3],
       quality: 1,
+      cropping: true,
+      multiple: false,
+      sortOrder: "asc",
+      maxFiles: 1, //can change
+      // we don't need the base64 here as we upload the file directly
+      // from the FS rather than a base64-encoded string of it
+      includeBase64: false,
     });
 
     console.log(result);
 
     if (!result.cancelled) {
-      setImage(result.uri);
+      setImage(result);
     }
   };
 
@@ -83,7 +90,7 @@ const CreatePinScreen = ({ navigation, route }) => {
       <View>
         {image && (
           <ImageBackground
-            source={{ uri: image }}
+            source={{ uri: image.uri }}
             style={{ width: width, height: 250 }}
           >
             <TouchableHighlight onPress={() => clearImage()}>
@@ -129,7 +136,7 @@ const CreatePinScreen = ({ navigation, route }) => {
         icon="camera"
         mode="contained"
         onPress={() => {
-          createPost({title, image, body});
+          createPost({ title, image, body });
         }}
       >
         Save Post

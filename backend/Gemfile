@@ -12,7 +12,7 @@ gem "mongo"
 gem "mongoid", "~> 7.2"
 
 #gem 'active_model_serializers', '~> 0.8.3' # NOTE: not the 0.9
-gem "devise_token_auth"
+#gem "devise_token_auth"
 gem "grape"
 # RuboCop extension focused on enforcing Rails best practices and coding conventions.
 gem "rubocop-rails", require: false
@@ -40,7 +40,28 @@ gem "simple_command"
 # gem 'image_processing', '~> 1.2'
 # https://github.com/mrrooijen/mongoid-paperclip
 gem "mongoid-paperclip"
+gem "bson_ext"
+#https://medium.com/@dakota.lillie/uploading-files-using-carrierwave-in-rails-81ef54ebbcdb
+gem "carrierwave-aws"
+gem "carrierwave-mongoid", :require => "carrierwave/mongoid"
+gem "carrierwave_direct"
+gem "mini_magick"
+gem "aws-sdk-rails"
+#gem 'figaro'
+#https://code.tutsplus.com/articles/uploading-with-rails-and-carrierwave--cms-28409
+gem "fog-aws"
+gem "excon"
+gem "jquery-rails"
+# temp work0around https://dev.to/cseeman/what-s-up-with-mimemagic-breaking-everything-he1
+gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
+# part of the AWS SDK for Ruby.
+#gem "aws-sdk-s3"
+# https://medium.com/@andrea.wayte/using-amazon-s3-to-store-images-for-react-on-rails-b1414ba2c0b2
+gem "aws-sdk-ec2", "~> 1"
 
+# allow us to stash credentials in a .env file and load them as environment variables while running a Rails server
+# https://medium.com/@spikeburton/setting-up-file-storage-using-aws-s3-for-rails-and-react-c25cceac56d8
+gem "dotenv-rails"
 # https://www.rubydoc.info/gems/geocoder/1.1.8
 gem "geocoder"
 # Reduces boot times through caching; required in config/boot.rb

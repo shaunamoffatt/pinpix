@@ -14,12 +14,6 @@ class User
   # encrypt password
   has_secure_password
   #https://medium.com/aviabird/mongoid-how-to-serialize-to-json-with-a-string-id-attribute-2d5c1bc284a7
-  def as_json(options={})
-    attrs = super(options)
-    attrs["id"] = attrs["_id"].to_s
-    attrs
-  end
-
   # Validations
   validates_presence_of :email, message: "Please enter a password"
   validates_presence_of :password_digest, message: "Password Problem"

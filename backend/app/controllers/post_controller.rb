@@ -33,25 +33,14 @@ class PostController < ApplicationController
 
   # POST create new Post
   def create
-    post = Post.create(post_params)
-
-    unless params[:tags].blank?
-      post["tags"] = params[:tags].split(",").map { |e| e.downcase }
-    end
-
-    unless post[:image].blank? #|| post[:image] == "on"
-      image = Image.create(params.permit(:image))
-    end
-
-    unless image.blank?
-      post.image_id = image.id
-    end
-
-    if post.valid?
-      render json: { message: "post saved created " }
+    @post = Post.new(post_params)
+    if @post.save
+      # write out the address in the console
+      puts @post.image
+      render json: { image_url: @post.image }, status: 200
     else
-      logger.info post.errors.full_messages
-      render json: { error: post.errors.full_messages }, status: :not_acceptable
+      logger.info @post.errors.full_messages
+      render json: { error: @post.errors.full_messages }, status: :not_acceptable
     end
   end
 
@@ -78,7 +67,7 @@ class PostController < ApplicationController
       data["tags"] = params[:tags].split(",")
     end
 
-    unless params[:image].blank? || params[:image] == "on"
+    unless params[:image].blank?
       image = Image.create(params.permit(:image))
       data["image_id"] = image.id
     end
@@ -106,6 +95,6 @@ class PostController < ApplicationController
   end
 
   def post_params
-    params.permit(:title, :body, :image)
+    params.permit(:image, :title, :body, :user_id)
   end
 end

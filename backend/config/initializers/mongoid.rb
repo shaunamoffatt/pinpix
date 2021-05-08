@@ -1,7 +1,8 @@
 Mongoid.logger = Logger.new($stdout)
 Mongo::Logger.logger = Logger.new($stdout)
 
-# convert object key "_id" to "id" and remove "_id" from displayed attributes on mongoid documents when represented as JSON
+# convert object key "_id" to "id" and remove "_id"
+# from displayed attributes on mongoid documents when represented as JSON
 module Mongoid
   module Document
     def as_json(options = {})

@@ -24,6 +24,7 @@ class AuthorizeApiRequest
   # decodes the token received from http_auth_headerand retrieves the user's ID
   def decoded_auth_token
     @decoded_auth_token ||= JsonWebToken.decode(http_auth_header)
+    puts "GOT THE DECODED AUTH TOKEN"
   end
 
   # extracts the token from the authorization header

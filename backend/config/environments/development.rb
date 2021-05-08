@@ -29,7 +29,7 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  #config.active_storage.service = :local
+  #config.active_storage.service = :amazon
 
   # Don't care if the mailer can't send.
   #config.action_mailer.raise_delivery_errors = false
@@ -53,4 +53,30 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Paperclip (for Amazon)
+  # https://github.com/thoughtbot/paperclip/wiki/Paperclip-with-Amazon-S3
+  # https://devcenter.heroku.com/articles/paperclip-s3
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_region: ENV["AWS_REGION"],
+    s3_credentials: {
+      access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+    },
+    s3_protocol: :https,
+    s3_host_name: "s3-us-east-1.amazonaws.com",
+
+    #s3_host_alias: ENV["CLOUDFRONT_DOMAIN"].gsub("https://", ""),
+    use_accelerate_endpoint: true,
+    bucket: ENV["AWS_BUCKET"],
+
+    s3_headers: {
+      "Cache-Control" => "max-age=315576000",
+    },
+  }
+
+  Paperclip::Attachment.default_options[:s3_region] = "us-east-1"
+  #Paperclip::Attachment.default_options[:s3_host_name] = "s3.us-east-1.amazonaws.com"
+  Paperclip.options[:command_path] = "usr/local/bin"
 end

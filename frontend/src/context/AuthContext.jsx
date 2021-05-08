@@ -50,13 +50,14 @@ const register = (dispatch) => async ({
     // If confirm password not entered
     alert("Please enter confirm password");
 
+  const formData = new FormData();
+
   // Create user if passwords match
   if (password_confirmation == password) {
+    formData.append("email", email);
+    formData.append("password", password);
     try {
-      const response = await pinpixApi.post(usersPath, {
-        email,
-        password,
-      });
+      const response = await pinpixApi.post(usersPath, formData);
       //Store the auth token on the phone
       SecureStore.setItemAsync(
         AsyncStorageItems.AUTH_TOKEN,
@@ -113,25 +114,6 @@ const login = (dispatch) => async ({ email, password }) => {
   } catch (error) {
     dispatch({
       type: ACTION_TYPES.LOGIN_FAILURE,
-      errorMessage: error.response.data.error,
-    });
-  }
-};
-
-const getId = (dispatch) => async ({}) => {
-  try {
-    const response = await pinpixApi.get(authenticatePath, {});
-    //Store the auth token on the phone
-    SecureStore.setItemAsync(AsyncStorageItems.USER_ID, response.data.user_id);
-    console.log(response.data);
-    //Saves states and dispatches loginsuccess
-    dispatch({
-      type: ACTION_TYPES.GET_USER_ID,
-      payload: response.data.auth_token,
-    });
-  } catch (error) {
-    dispatch({
-      //type: ACTION_TYPES.LOGIN_FAILURE,
       errorMessage: error.response.data.error,
     });
   }

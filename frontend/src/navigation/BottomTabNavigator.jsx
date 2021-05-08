@@ -36,8 +36,8 @@ const BottomTabNavigator = ({}) => {
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons
-              name="ios-home"
+            <FontAwesome
+              name="home"
               color={color}
               size={focused ? iconSize * 1.25 : iconSize}
             />
@@ -50,8 +50,8 @@ const BottomTabNavigator = ({}) => {
         options={{
           tabBarLabel: "Search",
           tabBarIcon: ({ color, size, focused }) => (
-            <Ionicons
-              name="ios-search-sharp"
+            <FontAwesome
+              name="search"
               color={color}
               size={focused ? iconSize * 1.25 : iconSize}
             />

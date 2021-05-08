@@ -51,24 +51,35 @@ const createPost = (dispatch) => async ({
   //try to create post
   try {
     let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
-    alert("Starting to Post" + token);
+    let user_id = await SecureStore.getItemAsync(AsyncStorageItems.ID);
 
-    var params = new URLSearchParams();
-    params.append('title', title);
-    params.append('image', image);
-    params.append('body', body);
-   
-    const response = await pinpixApi.post(
-      postPath, params,
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
-    console.log("RESPONSE : \n" + response);
+    alert("Starting to Post for user_id " + user_id);
+
+    const options = {
+      headers: {
+        Authorization: token,
+        acl: "public-read",
+      },
+    };
+
+    // ImagePicker saves the taken photo to disk and returns a local URI to it
+    let localUri = image.uri;
+    let filename = localUri.split("/").pop();
+
+    // Infer the type of the image
+    let match = /\.(\w+)$/.exec(filename);
+    let type = match ? `image/${match[1]}` : `image`;
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("body", body);
+    formData.append("user_id", user_id);
+    formData.append("image", { uri: localUri, name: filename, type });
+
+    const response = await pinpixApi.post(postPath, formData, options);
   } catch (error) {
-    console.log(error);
+    console.log(error.response);
+    alert("Error,Message Not submitted");
   }
 };
 
