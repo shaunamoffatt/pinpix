@@ -32,6 +32,12 @@ export const login_success = () => {
   };
 };
 
+export const api_call = () => {
+  return {
+    type: ACTION_TYPES.API_CALL,
+  };
+};
+
 export const login_failure = () => {
   return {
     type: ACTION_TYPES.LOGIN_FAILURE,
@@ -47,6 +53,18 @@ export const logout = () => {
 export const register_successs = profile => {
   return {
     type: ACTION_TYPES.REGISTER_SUCCESS,
+  };
+};
+
+export const POSTS_FETCH_ALL_ERROR = profile => {
+  return {
+    type: ACTION_TYPES.POSTS_FETCH_ALL_ERROR,
+  };
+};
+
+export const POSTS_FETCH_ALL_ERROR = profile => {
+  return {
+    type: ACTION_TYPES.POSTS_FETCH_ALL_ERROR,
   };
 };
 

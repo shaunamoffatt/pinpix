@@ -28,7 +28,7 @@ const SplashScreen = (props) => {
 
   return (
     <LinearGradient
-      colors={[Colors.greenLight, Colors.greenDark]}
+      colors={[Colors.earthGreen, Colors.earthGreenDark]}
       style={{
         flex: 1,
         justifyContent: "center",

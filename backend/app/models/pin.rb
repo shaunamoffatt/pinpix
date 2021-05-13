@@ -4,7 +4,6 @@ class Pin
   include Mongoid::Timestamps
 
   #field :current_title, type: Pintitle
-  has_many :pintitles
-  has_many :pinpost
+  has_many :posts
   embeds_one :location
 end

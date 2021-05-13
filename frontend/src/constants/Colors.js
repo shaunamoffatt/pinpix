@@ -12,6 +12,7 @@ export default {
   greenDH: "#1c450d",
   greenH: "#87B87A",
   earthGreen: "#8D9A60",
+  earthGreenDark: "#55691a",
   orangeH: "#E17E66",
   brownH: "#5C4742",
   lightH: "#F4F4F6",

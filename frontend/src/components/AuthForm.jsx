@@ -26,7 +26,7 @@ const AuthForm = ({
   const [callingApi, setCallingApi] = useState(false);
 
   const renderButton = () => {
-    //TODO: Fix to have spinner when calling 
+    //TODO: Fix to have spinner when calling
     if (callingApi) {
       return (
         <View style={styles.buttonWhite}>
@@ -34,7 +34,6 @@ const AuthForm = ({
         </View>
       );
     }
-
     return (
       <TouchableOpacity
         style={styles.buttonPink}
@@ -53,6 +52,10 @@ const AuthForm = ({
     <ScrollView style={styles.containerWhite}>
       <View style={styles.contentContainer}>
         <Text style={styles.largeTextDark}>{headerText}</Text>
+        {/* Display Error Messages returned from the API */}
+        {errorMessageText ? (
+          <Text style={styles.errorMessage}>{errorMessageText}</Text>
+        ) : null}
         {/* {callingApi ? <Text>TRUE</Text> : <Text>FALSE</Text>} */}
         <Hoshi
           label={"Email"}
@@ -84,10 +87,6 @@ const AuthForm = ({
         ) : null}
 
         {renderButton()}
-
-        {errorMessageText ? (
-          <Text style={styles.errorMessage}>{errorMessageText}</Text>
-        ) : null}
       </View>
     </ScrollView>
   );

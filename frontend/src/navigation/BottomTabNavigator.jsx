@@ -5,7 +5,8 @@ import HomeScreen from "../screens/main/HomeScreen";
 import SearchScreen from "../screens/main/SearchScreen";
 import ProfileScreen from "../screens/main/ProfileScreen";
 import ActivityScreen from "../screens/main/ActivityScreen";
-import CreatePinScreen from "../screens/main/CreatePinScreen";
+import CreatePinNavigator from "./CreatePinNavigator";
+//import CreatePinScreen from "../screens/main/CreatePinScreen";
 
 import Colors from "../constants/Colors";
 import { Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
@@ -61,7 +62,7 @@ const BottomTabNavigator = ({}) => {
       />
       <Tab.Screen
         name="AddPin"
-        component={CreatePinScreen}
+        component={CreatePinNavigator}
         options={{
           tabBarLabel: "Add Pin",
           tabBarIcon: ({ color, size, focused }) => (

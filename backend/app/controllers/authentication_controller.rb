@@ -3,13 +3,12 @@ class AuthenticationController < ApplicationController
 
   def authenticate
     command = AuthenticateUser.call(params[:email], params[:password])
-    puts "GETTITNG HERER YO"
     user = User.where(email: params[:email]).first
     if command.success? and user
       render json: { auth_token: command.result, id: user.id.to_s }
     else
       #TODO change what is sent back to the client
-      render json: { error: "AH shite! " + command.errors.full_messages }, status: :unauthorized
+      render json: { error: command.errors.full_messages }, status: :unauthorized
     end
   end
 end

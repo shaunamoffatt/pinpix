@@ -15,7 +15,6 @@ export default class Map extends React.Component {
     urlTemplate: "http://c.tile.openstreetmap.org/{z}/{x}/{y}.png",
     offlineUrlTemplate: `${FileSystem.documentDirectory}tiles/{z}/{x}/{y}.png`,
     isOffline: false,
-    mapRegion: undefined,
   };
   render() {
     const { isOffline } = this.state;

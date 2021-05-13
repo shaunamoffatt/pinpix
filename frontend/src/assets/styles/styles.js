@@ -85,8 +85,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 0.75,
-    width: undefined,
-    height: undefined,
     resizeMode: "contain",
     marginTop: 90,
     padding: 20,
@@ -171,8 +169,9 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     fontSize: 16,
+    fontWeight: "bold",
     color: Colors.orangeH,
-    marginTop: 15,
+    padding: 10,
   },
   overlay: {
     position: "absolute",

@@ -5,9 +5,9 @@ import Animated, {
 } from "react-native-reanimated";
 
 function useFadeIn() {
-  const opacityRef = (useRef < Animated.Value) | (undefined > undefined);
+  const opacityRef = (useRef < Animated.Value);
 
-  if (opacityRef.current === undefined)
+  if (opacityRef.current === useRef)
     opacityRef.current = new Animated.Value(0);
 
   useEffect(() => {

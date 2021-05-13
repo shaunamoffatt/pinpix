@@ -12,7 +12,7 @@ import logo from "../../assets/hometreewhite.png";
 import hands from "../../assets/onboarding/hands.png";
 import { styles } from "../../assets/styles/styles";
 import { Video } from "expo";
-
+{/** Currently not in use- Made for possiblilty for alternative Login-Feature */}
 const MembersAuthScreen = (props) => {
   return (
     <View style={styles.containerWhite}>

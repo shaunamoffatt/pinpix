@@ -1,46 +1,23 @@
 import React, { useEffect } from "react";
 import createDataContext from "./createDataContext";
-import { AuthReducer, initialState } from "../store/reducers/auth_reducers";
+import { PostReducer, initialState } from "../store/reducers/post_reducers";
 import { AsyncStorage } from "react-native";
 
 import * as ACTION_TYPES from "../store/actions/action_types";
 
 import pinpixApi from "../api/pinpixApi";
 //TODO find better place for api URLS
-let authenticatePath = "authenticate";
-let usersPath = "users";
 let postPath = "post";
+
 //TODO find a better place for this too
 import AsyncStorageItems from "../constants/AsyncStorageItems";
 import * as SecureStore from "expo-secure-store";
-
-const retrieveToken = (dispatch) => async ({}) => {
-  try {
-    return (token = await SecureStore.getItemAsync(
-      AsyncStorageItems.AUTH_TOKEN
-    ));
-    dispatch({ type: ACTION_TYPES.RETRIEVE_TOKEN, auth_token: token });
-  } catch (error) {
-    try {
-      alert("Error Retrieving Token");
-      //Remove the auth token on the phone
-      SecureStore.deleteItemAsync(AsyncStorageItems.AUTH_TOKEN);
-      //Reset states
-      dispatch({ type: "LOGOUT" });
-    } catch (error) {
-      console.log(error);
-    }
-    console.log(
-      "Something went wrong retrieving authtoken from storage",
-      error
-    );
-  }
-};
 
 const clearErrorMessage = (dispatch) => () => {
   dispatch({ type: ACTION_TYPES.CLEAR_ERROR_MESSAGE });
 };
 
+{/** TODO fix up dispatches in createPost, add tag etc */}
 const createPost = (dispatch) => async ({
   //TODO move this to post_reducer and add auth headers
   title,
@@ -52,7 +29,7 @@ const createPost = (dispatch) => async ({
   try {
     let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
     let user_id = await SecureStore.getItemAsync(AsyncStorageItems.ID);
-
+    //TODO: remove ..just for debug
     alert("Starting to Post for user_id " + user_id);
 
     const options = {
@@ -69,22 +46,76 @@ const createPost = (dispatch) => async ({
     // Infer the type of the image
     let match = /\.(\w+)$/.exec(filename);
     let type = match ? `image/${match[1]}` : `image`;
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("body", body);
     formData.append("user_id", user_id);
     formData.append("image", { uri: localUri, name: filename, type });
-
+    // Post the image to the pinpixAPi who pushes the image to aws S3
     const response = await pinpixApi.post(postPath, formData, options);
+    // TODO: change this .. just for demo purposes
+    getPosts();
+    dispatch({
+      type: ACTION_TYPES.POST_CREATE_SUCCESS,
+    });
+
   } catch (error) {
     console.log(error.response);
-    alert("Error,Message Not submitted");
+    alert("Error, Message Not submitted");
+         dispatch({
+      type: ACTION_TYPES.POST_CREATE_FAILURE,
+      errorMessage: "Failed to create post"
+    });
   }
 };
 
+const getPosts = (dispatch) => async () => {
+  alert("GETTING POSTS IMAGES");
+  //try to get images
+  try {
+    let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
+    let user_id = await SecureStore.getItemAsync(AsyncStorageItems.ID);
+
+    const options = {
+      headers: {
+        Authorization: token,
+        acl: "public-read",
+      },
+    };
+
+    console.log(postPath);
+    // TODO: send back only some .. for now get all the photos
+    const response = await pinpixApi.get(postPath, options);
+    var data = response.data;
+    let imageArray = [];
+    // loop through and add the url from the image
+    for (var i = 0; i < data.length; i++) {
+      var object = data[i].image;
+      for (var property in object) {
+        if (object[property] != null) {
+          imageArray.push(object[property]);
+        }
+      }
+    }
+    dispatch({
+      type: ACTION_TYPES.POSTS_FETCH_ALL_SUCCESS,
+      images: imageArray,
+    });
+  } catch (error) {
+    console.log(error.response);
+    dispatch({ type: ACTION_TYPES.POSTS_FETCH_ALL_ERROR });
+  }
+};
+
+function getPropValue(param) {
+  var obj = data.ClassGroup.filter(function (el) {
+    return el[param.where] === param.is;
+  });
+  return obj[0][param.find];
+}
+
 export const { Provider, Context } = createDataContext(
-  AuthReducer,
-  { createPost },
+  PostReducer,
+  { createPost, getPosts },
   initialState
 );

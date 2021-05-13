@@ -42,17 +42,8 @@ const StartScreen = (props) => {
             props.navigation.navigate("User");
           }}
         >
-          <Text style={styles.colorWhite}>Pledge or Donate</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity
-          style={styles.buttonWhite}
-          onPress={() => {
-            props.navigation.navigate("Member");
-          }}
-        >
-          <Text style={styles.colorWhite}>Members or Volunteers</Text>
-        </TouchableOpacity>
+          <Text style={styles.colorWhite}>Begin Today!</Text>
+        </TouchableOpacity>    
         <StatusBar style="auto" />
       </View>
     </View>

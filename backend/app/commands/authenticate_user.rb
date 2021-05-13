@@ -17,9 +17,17 @@ class AuthenticateUser
 
   def user
     user = User.where(email: email).first
-
     return user if user && user.authenticate(password)
-    errors.add :user_authentication, "Invalid email and password"
+    # Add error depending on if email exists in db or not
+    if email == ""
+      errors.add :Error, ": Please enter an email"
+    elsif User.where(email: email).first && password == ""
+      errors.add :Error, ": Please enter a password"
+    elsif User.where(email: email).first
+      errors.add :Error, ": Incorrect password"
+    else
+      errors.add :Error, ": Email not registered."
+    end
     nil
   end
 end

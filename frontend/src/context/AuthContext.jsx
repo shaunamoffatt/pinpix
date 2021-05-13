@@ -15,17 +15,20 @@ import AsyncStorageItems from "../constants/AsyncStorageItems";
 import * as SecureStore from "expo-secure-store";
 
 const retrieveToken = (dispatch) => async ({}) => {
+  // Try to get the token from storage
   try {
     let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
     dispatch({ type: ACTION_TYPES.RETRIEVE_TOKEN, auth_token: token });
   } catch (error) {
+    // If it can't .. then sign the user out
     try {
       alert("Trying to sign out");
       //Remove the auth token on the phone
       SecureStore.deleteItemAsync(AsyncStorageItems.AUTH_TOKEN);
       //Reset states
-      dispatch({ type: "LOGOUT" });
+      dispatch({ type: ACTION_TYPES.LOGOUT });
     } catch (error) {
+      // Something bad happened while Attempting to Log out
       console.log(error);
     }
     console.log(
@@ -45,10 +48,17 @@ const register = (dispatch) => async ({
   password_confirmation,
 }) => {
   // If passwords not entered
-  if (password == "") alert("Please enter Password");
-  else if (password_confirmation == "")
+  if (password == "") {
+    dispatch({
+      type: ACTION_TYPES.LOGIN_FAILURE,
+      errorMessage: "Please enter a password",
+    });
+  } else if (password_confirmation == "")
     // If confirm password not entered
-    alert("Please enter confirm password");
+    dispatch({
+      type: ACTION_TYPES.LOGIN_FAILURE,
+      errorMessage: "Please confirm password",
+    });
 
   const formData = new FormData();
 
@@ -74,11 +84,10 @@ const register = (dispatch) => async ({
     } catch (error) {
       dispatch({
         type: ACTION_TYPES.LOGIN_FAILURE,
-        errorMessage: "Failed to Register",
+        errorMessage: error.response.data.error,
       });
     }
   } else {
-    password_error = "Passwords not the same";
     dispatch({
       type: ACTION_TYPES.LOGIN_FAILURE,
       errorMessage: "Passwords Not the same",

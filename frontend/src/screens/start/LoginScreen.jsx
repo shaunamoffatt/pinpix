@@ -8,11 +8,7 @@ const LoginScreen = (props) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      // Do something when the screen is focused, onFocus
-
       return () => {
-        // Do something when the screen is unfocused, onBlur
-        // Useful for cleanup functions
         clearErrorMessage();
       };
     }, [])

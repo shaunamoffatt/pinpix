@@ -3,9 +3,7 @@ import { Appbar } from "react-native-paper";
 //TODO make more customizable
 const CustomAppBar = () => {
   const _goBack = () => console.log("Went back");
-
   const _handleSearch = () => console.log("Searching");
-
   const _handleMore = () => console.log("Shown more");
 
   return (

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
     render json: { name: @current_user.id }, status: 200
   end
 
-  def test_params
-    params.permit(:users_name_test)
-  end
+  #def test_params
+  #params.permit(:users_name_test)
+  #end
 end

@@ -58,19 +58,6 @@ export const AuthReducer = (state = initialState, action) => {
         auth_token: null,
         userId: null,
       };
-      //TODO move this to post_reducer and do post context functionalitly from there
-      case ACTION_TYPES.POST_CREATE_SUCCESS:
-      return {
-        ...state,
-      };
-    case ACTION_TYPES.POST_CREATE_FAILURE:
-      return {
-        ...state,
-      };
-    case ACTION_TYPES.POST_FETCH_SUCCESS:
-      return {
-        ...state,
-      };
     default:
       return state;
   }

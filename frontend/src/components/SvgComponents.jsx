@@ -1,6 +1,6 @@
 import React from "react";
 //https://ozorku.hashnode.dev/how-to-use-svg-images-in-react-native-expo-app-ckahw4soq01dumks1zffuv4ey
-import { SvgXml } from "react-native-svg";
+import Svg, { SvgXml } from "react-native-svg";
 
 const SvgHeart = ({ styles, width, height }) => {
   const xml = `

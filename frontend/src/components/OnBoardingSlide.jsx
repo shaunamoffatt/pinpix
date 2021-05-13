@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import {
   Text,
@@ -19,7 +19,6 @@ import { FAB } from "react-native-paper";
 
 import { styles } from "../assets/styles/styles";
 //https://medium.com/backticks-tildes/create-a-custom-app-intro-slider-in-react-native-4308fae83ad1
-//TODO : extact onboarding component for each screen
 const OnBoardingSlide = ({
   imageSource,
   overlayImageSource,
@@ -38,7 +37,7 @@ const OnBoardingSlide = ({
   };
 
   useEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       return Animated.parallel([
         Animated.timing(state.SlideInLeft, {
           toValue: 1,
@@ -57,7 +56,7 @@ const OnBoardingSlide = ({
         }),
       ]).start();
     }, [index])
-  );
+ );
 
   let { slideUpValue, fadeValue, SlideInLeft } = state;
   return (

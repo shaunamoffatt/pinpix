@@ -4,31 +4,11 @@ class PostController < ApplicationController
   before_action :find, only: [:edit, :destroy, :update, :status]
 
   def show
-    if params[:page].blank?
-      @no = 0
-    else
-      page = params[:page].to_i
-      page = 0 if page == 1
-      page = page - 1 if page > 1
-      @no = page * 5
+    @posts = Post.all
+    if @posts
+      # returns the most recent posts
+      render json: @posts.order(created_at: :desc).limit(15)
     end
-
-    #TODO edit this to show different posts
-    @show = "all" #params[:id]
-
-    case @show
-    when "all"
-      @posts = Post.order(created_at: :desc) #.page(params[:page])
-      render json: @posts
-    when "active"
-      @posts = Post.where(is_active: true).order(created_at: :desc) #.page(params[:page])
-    when "passive"
-      @posts = Post.where(is_active: false).order(created_at: :desc) #.page(params[:page])
-    else
-      return not_found
-    end
-
-    @heading = @show.capitalize
   end
 
   # POST create new Post
