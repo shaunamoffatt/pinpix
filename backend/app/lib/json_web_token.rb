@@ -3,22 +3,18 @@
 require "jwt"
 
 class JsonWebToken
-  ALGORITHM = "HS256"
-  #token = JWT.encode payload, HMAC_SECRET, ALGORITHM
-  # Stored in the .env
-
   def self.encode(payload)
     id = payload[:user_id].to_s
     p = { user_id: id }
     # sign token with application secret
-    JWT.encode p, ENV["API_SECRET_KEY"]
+    JWT.encode p, ENV["API_SECRET_KEY"], "HS256"
   end
 
   def self.decode(token)
     puts "HERE IS THE DECODE: "
     puts token
     # get payload; first index in decoded Array
-    body = JWT.decode token, ENV["API_SECRET_KEY"]
+    body = JWT.decode token, ENV["API_SECRET_KEY"], true, { algorithm: "HS256" }
     HashWithIndifferentAccess.new body
     puts body
     # rescue from all decode errors
