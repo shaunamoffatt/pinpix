@@ -1,13 +1,15 @@
 class AuthorizeApiRequest
   prepend SimpleCommand
 
+  # Authorization header token is passed
   def initialize(header_token)
     @header_token = header_token
   end
 
   # The Service object entry point to return user
   def call
-    user
+    @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+    @user || errors.add(:token, "Invalid token") && nil
   end
 
   private
