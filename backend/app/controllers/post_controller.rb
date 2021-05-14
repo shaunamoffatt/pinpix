@@ -1,5 +1,4 @@
 class PostController < ApplicationController
-  skip_before_action :authenticate_request
   before_action :active, only: [:show, :new, :edit]
   before_action :find, only: [:edit, :destroy, :update, :status]
 

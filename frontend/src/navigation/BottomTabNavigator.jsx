@@ -12,7 +12,6 @@ import Colors from "../constants/Colors";
 import { Ionicons, FontAwesome, AntDesign } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
-
 let iconSize = 25;
 let bigIconSize = 50;
 const BottomTabNavigator = ({}) => {

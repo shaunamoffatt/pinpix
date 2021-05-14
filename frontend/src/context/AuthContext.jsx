@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import createDataContext from "./createDataContext";
 import { AuthReducer, initialState } from "../store/reducers/auth_reducers";
 import { AsyncStorage } from "react-native";

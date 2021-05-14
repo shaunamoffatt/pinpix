@@ -107,13 +107,6 @@ const getPosts = (dispatch) => async () => {
   }
 };
 
-function getPropValue(param) {
-  var obj = data.ClassGroup.filter(function (el) {
-    return el[param.where] === param.is;
-  });
-  return obj[0][param.find];
-}
-
 export const { Provider, Context } = createDataContext(
   PostReducer,
   { createPost, getPosts },

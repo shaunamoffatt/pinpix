@@ -5,16 +5,12 @@ class UsersController < ApplicationController
   # return authenticated token upon signup
   def create
     @user = User.new(user_params)
-    @auth_token = AuthenticateUser.new(@user.email, @user.password).call
-    if @user.save
+    @auth_token = AuthenticateUser.new(@user.email, @user.password).call()
+    if @user.valid
       logger.info "User Created...."
       render json: { message: "User Created ", auth_token: @auth_token, user_id: @user.id }
     else
-      # if User.where(email: params[:email]).first
-      #render json: { error: "Email already registered" }, status: :not_acceptable
-      # else
       render json: { error: @user.errors.full_messages }, status: :not_acceptable
-      # end
     end
   end
 

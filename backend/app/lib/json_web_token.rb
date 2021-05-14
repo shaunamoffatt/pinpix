@@ -3,24 +3,24 @@
 require "jwt"
 
 class JsonWebToken
-  # secret to encode and decode token
-  HMAC_SECRET = Rails.application.secret_key_base
   ALGORITHM = "HS256"
   #token = JWT.encode payload, HMAC_SECRET, ALGORITHM
+  # Stored in the .env
 
-  def self.encode(payload, exp = 1.years.from_now)
-    # set expiry to 1 year from creation time
-    #payload[:exp] = exp.to_i
-    # sign token with application secret
+  def self.encode(payload)
     id = payload[:user_id].to_s
     p = { user_id: id }
-    JWT.encode(p, HMAC_SECRET, ALGORITHM)
+    # sign token with application secret
+    JWT.encode p, ENV["API_SECRET_KEY"]
   end
 
   def self.decode(token)
+    puts "HERE IS THE DECODE: "
+    puts token
     # get payload; first index in decoded Array
-    body = JWT.decode token, HMAC_SECRET, hmac_secret, true, { algorithm: "HS256" }
+    body = JWT.decode token, ENV["API_SECRET_KEY"]
     HashWithIndifferentAccess.new body
+    puts body
     # rescue from all decode errors
   rescue JWT::DecodeError => e
     # raise custom error to be handled by custom handler

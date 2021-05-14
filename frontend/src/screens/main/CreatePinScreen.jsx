@@ -26,8 +26,8 @@ import { Camera } from "expo-camera";
 
 const CreatePinScreen = ({ navigation, route }) => {
   const { state, createPost } = useContext(PostContext);
-  const [image, setImage] = useState(null);
   //States for the input values
+  const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -39,16 +39,13 @@ const CreatePinScreen = ({ navigation, route }) => {
   //https://docs.expo.io/versions/latest/sdk/camera/
   useEffect(() => {
     (async () => {
-      if (Platform.OS !== "web") {
-        const { status } =
-          await ImagePicker.requestMediaLibraryPermissionsAsync();
-        // try get permission for the camera
-        const { cam_status } = await Camera.requestPermissionsAsync();
-        setHasPermission(cam_status === "granted");
-
-        if (status !== "granted") {
-          alert("Sorry, we need camera roll permissions to make this work!");
-        }
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      // try get permission for the camera
+      const { cam_status } = await Camera.requestPermissionsAsync();
+      setHasPermission(cam_status === "granted");
+      if (status !== "granted") {
+        alert("Sorry, we need camera roll permissions to make this work!");
       }
     })();
   }, []);

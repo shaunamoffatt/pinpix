@@ -46,7 +46,6 @@ const CapturePhotoScreen = ({ navigation }) => {
   const prepareRatio = async () => {
     if (Platform.OS === "android" && cameraRef) {
       const ratios = await cameraRef.getSupportedRatiosAsync();
-
       // See if the current device has your desired ratio, otherwise get the maximum supported one
       // Usually the last element of "ratios" is the maximum supported ratio
       const ratio =

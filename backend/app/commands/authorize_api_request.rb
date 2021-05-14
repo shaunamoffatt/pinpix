@@ -1,18 +1,18 @@
 class AuthorizeApiRequest
   prepend SimpleCommand
 
-  def initialize(headers = {})
-    @headers = headers
+  def initialize(header_token)
+    @header_token = header_token
   end
 
+  # The Service object entry point to return user
   def call
     user
   end
 
   private
 
-  attr_reader :headers
-
+  attr_reader :header_token
   # if the User.find() returns an empty set or decoded_auth_token returns false,
   # @user will be nil.
   # return the user or throw an error
@@ -23,17 +23,6 @@ class AuthorizeApiRequest
 
   # decodes the token received from http_auth_headerand retrieves the user's ID
   def decoded_auth_token
-    @decoded_auth_token ||= JsonWebToken.decode(http_auth_header)
-    puts "GOT THE DECODED AUTH TOKEN"
-  end
-
-  # extracts the token from the authorization header
-  def http_auth_header
-    if headers["Authorization"].present?
-      return headers["Authorization"].split(" ").last
-    else
-      errors.add(:token, "Missing token")
-    end
-    nil
+    JsonWebToken.decode(@header_token)
   end
 end

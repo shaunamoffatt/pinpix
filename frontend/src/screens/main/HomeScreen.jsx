@@ -52,7 +52,6 @@ const HomeScreen = ({}) => {
       latitudeDelta: 0.1,
       longitudeDelta: 0.05,
     };
-    //setRegion(location);
   };
 
   if (!state.mapLoaded) {
