@@ -19,8 +19,6 @@ class AuthenticateUser
 
   def user
     user = User.where(email: email).first
-    puts "HERE IS THE USER"
-    puts email
     return user if user && user.authenticate(password)
     # Add error depending on if email exists in db or not
     if email == ""

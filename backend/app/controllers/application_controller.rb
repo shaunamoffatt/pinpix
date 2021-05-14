@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   before_action :authenticate_request
   attr_reader :current_user
 
+  # Gets the Authorizations from the
   def authenticate_request
     auth_header_token = request.headers["Authorization"]
     @current_user = AuthorizeApiRequest.new(auth_header_token).call
