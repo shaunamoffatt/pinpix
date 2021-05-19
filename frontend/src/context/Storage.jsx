@@ -7,7 +7,6 @@ const retrieveToken = (dispatch) => async ({}) => {
     dispatch({ type: ACTION_TYPES.RETRIEVE_TOKEN, auth_token: token });
   } catch (error) {
     try {
-      alert("Trying to sign out");
       //Remove the auth token on the phone
       SecureStore.deleteItemAsync(AsyncStorageItems.AUTH_TOKEN);
       //Reset states

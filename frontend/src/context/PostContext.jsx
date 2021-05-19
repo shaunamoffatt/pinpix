@@ -28,8 +28,8 @@ const createPost = (dispatch) => async ({
   //try to create post
   try {
     let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
-    let user_id = await SecureStore.getItemAsync(AsyncStorageItems.ID);
-    //TODO: remove ..just for debug
+    let user_id = await SecureStore.getItemAsync(AsyncStorageItems.USER_ID);
+  //TODO: remove ..just for debug
     alert("Starting to Post for user_id " + user_id);
 
     const options = {
@@ -74,8 +74,8 @@ const getPosts = (dispatch) => async () => {
   //try to get images
   try {
     let token = await SecureStore.getItemAsync(AsyncStorageItems.AUTH_TOKEN);
-    let user_id = await SecureStore.getItemAsync(AsyncStorageItems.ID);
-
+    let user_id = await SecureStore.getItemAsync(AsyncStorageItems.USER_ID);
+ 
     const options = {
       headers: {
         Authorization: token,
