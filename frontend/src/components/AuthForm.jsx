@@ -19,15 +19,15 @@ const AuthForm = ({
   buttonText,
   onSubmit,
   errorMessageText,
+  buttonLoadDisplay
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
-  const [callingApi, setCallingApi] = useState(false);
 
   const renderButton = () => {
     //TODO: Fix to have spinner when calling
-    if (callingApi) {
+    if (buttonLoadDisplay) {
       return (
         <View style={styles.buttonWhite}>
           <Spinner size="small" />

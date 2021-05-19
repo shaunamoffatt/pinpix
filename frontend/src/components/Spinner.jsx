@@ -10,7 +10,7 @@ const Spinner = ({ size }) => {
     <View >
       <ActivityIndicator
         size={size || "large"}
-        color={Colors.pink}
+        color={Colors.earthGreenDark}
         animating={true}
       />
     </View>

@@ -13,6 +13,7 @@ const RegisterScreen = (props) => {
       buttonText="Register"
       onSubmit={register}
       errorMessageText={state.errorMessage}
+      buttonLoadDisplay={state.callingApi}
     />
   );
 };

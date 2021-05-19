@@ -37,7 +37,7 @@ const StartScreen = (props) => {
         <Image source={logo} style={styles.logo} />
 
         <TouchableOpacity
-          style={styles.buttonWhite}
+          style={styles.buttonClear}
           onPress={() => {
             props.navigation.navigate("User");
           }}

@@ -21,6 +21,7 @@ const LoginScreen = (props) => {
       buttonText="Login"
       onSubmit={login}
       errorMessageText={state.errorMessage}
+      buttonLoadDisplay={state.callingApi}
     >
     </AuthForm>
   );
